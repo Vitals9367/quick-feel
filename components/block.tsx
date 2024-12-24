@@ -27,7 +27,7 @@ import { MultimodalInput } from './multimodal-input';
 import { Toolbar } from './toolbar';
 import { VersionFooter } from './version-footer';
 import { BlockActions } from './block-actions';
-import { BlockCloseButton } from './block-close-button';
+import { BlockCloseButton } from './buttons/block-close-button';
 import { BlockMessages } from './block-messages';
 import { CodeEditor } from './code-editor';
 import { Console } from './console';

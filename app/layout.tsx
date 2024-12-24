@@ -1,39 +1,43 @@
 import type { Metadata } from 'next';
 import { Toaster } from 'sonner';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { Source_Sans_3, Manrope } from "next/font/google";
 
-import { ThemeProvider } from '@/components/theme-provider';
-
+import { siteDetails } from '@/data/siteDetails';
 import './globals.css';
 
+const manrope = Manrope({ subsets: ['latin'] });
+const sourceSans = Source_Sans_3({ subsets: ['latin'] });
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://chat.vercel.ai'),
-  title: 'Next.js Chatbot Template',
-  description: 'Next.js chatbot template using the AI SDK.',
+  title: siteDetails.metadata.title,
+  description: siteDetails.metadata.description,
+  openGraph: {
+    title: siteDetails.metadata.title,
+    description: siteDetails.metadata.description,
+    url: siteDetails.siteUrl,
+    type: 'website',
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 675,
+        alt: siteDetails.siteName,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteDetails.metadata.title,
+    description: siteDetails.metadata.description,
+    images: ['/images/twitter-image.jpg'],
+  },
 };
 
 export const viewport = {
   maximumScale: 1, // Disable auto-zoom on mobile Safari
 };
 
-const LIGHT_THEME_COLOR = 'hsl(0 0% 100%)';
-const DARK_THEME_COLOR = 'hsl(240deg 10% 3.92%)';
-const THEME_COLOR_SCRIPT = `\
-(function() {
-  var html = document.documentElement;
-  var meta = document.querySelector('meta[name="theme-color"]');
-  if (!meta) {
-    meta = document.createElement('meta');
-    meta.setAttribute('name', 'theme-color');
-    document.head.appendChild(meta);
-  }
-  function updateThemeColor() {
-    var isDark = html.classList.contains('dark');
-    meta.setAttribute('content', isDark ? '${DARK_THEME_COLOR}' : '${LIGHT_THEME_COLOR}');
-  }
-  var observer = new MutationObserver(updateThemeColor);
-  observer.observe(html, { attributes: true, attributeFilter: ['class'] });
-  updateThemeColor();
-})();`;
 
 export default async function RootLayout({
   children,
@@ -50,23 +54,12 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: THEME_COLOR_SCRIPT,
-          }}
-        />
       </head>
-      <body className="antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+      <body className={`${manrope.className} ${sourceSans.className} antialiased`}>
           <Toaster position="top-center" />
+          {siteDetails.googleAnalyticsId && <GoogleAnalytics gaId={siteDetails.googleAnalyticsId} />}
           {children}
-        </ThemeProvider>
-      </body>
+        </body>
     </html>
   );
 }

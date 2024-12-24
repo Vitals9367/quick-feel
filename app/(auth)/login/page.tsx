@@ -9,6 +9,7 @@ import { AuthForm } from '@/components/auth-form';
 import { SubmitButton } from '@/components/submit-button';
 
 import { login, type LoginActionState } from '../actions';
+import { signIn } from '../../../lib/auth/auth';
 
 export default function Page() {
   const router = useRouter();
@@ -35,8 +36,9 @@ export default function Page() {
   }, [state.status, router]);
 
   const handleSubmit = (formData: FormData) => {
-    setEmail(formData.get('email') as string);
-    formAction(formData);
+    // setEmail(formData.get('email') as string);
+    // formAction(formData);
+    signIn("keycloak")
   };
 
   return (

@@ -1,6 +1,5 @@
+import { signOut } from '@/lib/auth/auth';
 import Form from 'next/form';
-
-import { signOut } from '@/app/(auth)/auth';
 
 export const SignOutForm = () => {
   return (

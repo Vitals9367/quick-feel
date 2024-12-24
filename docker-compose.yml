@@ -1,0 +1,75 @@
+version: '3.9'
+
+networks:
+  keycloak:
+
+volumes:
+  postgres_data:
+  keycloak_data:
+
+
+services:
+
+# =============================================
+#                   REDIS
+# =============================================
+
+  redis:
+    image: redis:latest
+    ports:
+      - "${REDIS_PORT}:6379"
+
+# =============================================
+#                   DB
+# =============================================
+
+  postgres:
+    image: postgres:16.2
+    environment:
+      POSTGRES_USER: ${API_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${API_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${API_POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+# =============================================
+#                   Keycloak
+# =============================================
+
+  keycloak_db:
+    image: postgres:16.2
+    volumes:
+      - keycloak_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${KEYCLOAK_POSTGRES_DB}
+      POSTGRES_USER: ${KEYCLOAK_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${KEYCLOAK_POSTGRES_PASSWORD}
+    networks:
+      - keycloak
+
+  keycloak:
+    image: keycloak/keycloak:26.0
+    command: start
+    environment:
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: ${KEYCLOAK_PORT}
+      KC_HOSTNAME_STRICT_BACKCHANNEL: false
+      KC_HTTP_ENABLED: true
+      KC_HOSTNAME_STRICT_HTTPS: false
+      KC_HEALTH_ENABLED: true
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://keycloak_db/${KEYCLOAK_POSTGRES_DB}
+      KC_DB_USERNAME: ${KEYCLOAK_POSTGRES_USER}
+      KC_DB_PASSWORD: ${KEYCLOAK_POSTGRES_PASSWORD}
+    ports:
+      - ${KEYCLOAK_PORT}:8080
+    restart: always
+    depends_on:
+      - keycloak_db
+    networks:
+      - keycloak
