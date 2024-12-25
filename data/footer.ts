@@ -4,10 +4,9 @@ export const footerDetails: {
     subheading: string;
     quickLinks: IMenuItem[];
     email: string;
-    telephone: string;
     socials: ISocials;
 } = {
-    subheading: "Empowering businesses with cutting-edge financial technology solutions.",
+    subheading: "Plan adventures, explore destinations, and travel with ease using Adventurer Guide, your all-in-one AI travel assistant.",
     quickLinks: [
         {
             text: "Features",
@@ -16,22 +15,12 @@ export const footerDetails: {
         {
             text: "Pricing",
             url: "#pricing"
-        },
-        {
-            text: "Testimonials",
-            url: "#testimonials"
         }
     ],
-    email: 'address@yoursite.com',
-    telephone: '+1 (123) 456-7890',
+    email: 'support@adventurerguide.com',
     socials: {
-        // github: 'https://github.com',
-        // x: 'https://twitter.com/x',
-        twitter: 'https://twitter.com/Twitter',
-        facebook: 'https://facebook.com',
-        // youtube: 'https://youtube.com',
-        linkedin: 'https://www.linkedin.com',
-        // threads: 'https://www.threads.net',
-        instagram: 'https://www.instagram.com',
+        x: 'https://twitter.com/x',
+        github: 'https://github.com',
+        linkedin: 'https://www.linkedin.com'
     }
 }

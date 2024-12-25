@@ -7,7 +7,7 @@ interface SignInButtonProps {
     text?: string
 }
 
-const SignInButton: React.FC<SignInButtonProps> = ({text = "Start Your Journey Today – Try Nomad Chat for Free!"}) => {
+const SignInButton: React.FC<SignInButtonProps> = ({text = "Sign Up"}) => {
 
     const onClick = () => {
         signIn("keycloak", { callbackUrl: '/chat' });

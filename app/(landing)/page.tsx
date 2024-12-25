@@ -11,21 +11,37 @@ import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Stats from "@/components/Stats";
 import CTA from "@/components/CTA";
+import TimeWasted from "@/components/TimeWasted";
+import Vsl from "@/components/Vsl";
+import { IoArrowDownOutline } from "react-icons/io5";
 
 const HomePage: React.FC = async () => {
-
-  const session = await auth();
-
-  // if (session) {
-  //   redirect("/chat");
-  // }
 
   return (
     <>
       <Hero />
-      <Logos />
+      {/* <Logos /> */}
       <Container>
-        <Benefits />
+
+        <Section
+          id="time-wasted"
+          title="Where Does Your Time Go?"
+          description="See How Much Time You’re Spending on Non-Adventuring Tasks"
+        >
+          <TimeWasted />
+          <p className="flex items-center justify-center gap-2">
+            <IoArrowDownOutline />
+            There's an easier way
+          </p>
+        </Section>
+
+        <Section
+          id="benefits"
+          title="Benefits"
+          description="Simple, transparent pricing. No surprises."
+        >
+          <Benefits />
+        </Section>
 
         <Section
           id="pricing"
@@ -35,17 +51,17 @@ const HomePage: React.FC = async () => {
           <Pricing />
         </Section>
 
-        <Section
+        {/* <Section
           id="testimonials"
           title="What Our Clients Say"
           description="Hear from those who have partnered with us."
         >
           <Testimonials />
-        </Section>
+        </Section> */}
 
         <FAQ />
 
-        <Stats />
+        {/* <Stats /> */}
         
         <CTA />
       </Container>

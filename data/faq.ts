@@ -4,22 +4,34 @@ import { siteDetails } from "./siteDetails";
 export const faqs: IFAQ[] = [
     {
         question: `Is ${siteDetails.siteName} secure?`,
-        answer: 'Absolutely. We use bank-level encryption to protect your data and never store your login information. Plus, our biometric authentication adds an extra layer of security.',
+        answer: 'Absolutely. We prioritize your privacy and security. All your data is protected with bank-level encryption, ensuring your travel information stays safe.',
     },
     {
         question: `Can I use ${siteDetails.siteName} on multiple devices?`,
-        answer: 'Absolutely! Your Finwise account syncs seamlessly across all your devices - smartphone, tablet, and computer.',
+        answer: 'Yes! Adventurer Guide syncs seamlessly across all your devices – smartphone, tablet, or desktop – making it easy to plan and explore from anywhere.',
     },
     {
-        question: 'Can I connect all my bank accounts?',
-        answer: `Yes! ${siteDetails.siteName} supports connections with over 10,000 financial institutions worldwide. Simply log in through our secure portal to link your accounts.`
+        question: 'Can I access maps and guides offline?',
+        answer: 'Definitely! You can download maps, itineraries, and guides to use them offline, ensuring you stay on track even in remote areas with no internet connection.',
     },
     {
-        question: 'Do I need any financial expertise to use the investing features?',
-        answer: 'Not at all! Our expert-curated portfolios and educational resources make investing accessible to everyone, regardless of experience level.',
+        question: 'Do I need internet access to use all features?',
+        answer: 'Some features, like real-time chat guidance and live updates, require internet access. However, offline tools like maps and saved itineraries are fully functional without it.',
     },
     {
-        question: 'What if I need help using the app?',
-        answer: 'Our dedicated support team is available 24/7 via chat or email. Plus, we offer extensive in-app tutorials and a comprehensive knowledge base to help you make the most of Finwise.'
+        question: 'How does Adventurer Guide create personalized travel plans?',
+        answer: `Adventurer Guide uses advanced algorithms to tailor itineraries based on your preferences, interests, budget, and schedule. Whether you love nature, culture, or adventure, we’ve got you covered!`,
+    },
+    {
+        question: 'What if I get lost or need help during my trip?',
+        answer: 'No worries! Adventurer Guide provides real-time guidance and support. You can get live directions, ask for tips, or use interactive maps to navigate.',
+    },
+    {
+        question: 'Is there customer support available?',
+        answer: 'Of course! Our dedicated support team is available 24/7 via chat or email to help with any questions or issues you may encounter.',
+    },
+    {
+        question: 'Can I share my itinerary with others?',
+        answer: 'Yes! You can easily share your travel plans with friends and family through a shareable link or by exporting your itinerary.',
     }
 ];
