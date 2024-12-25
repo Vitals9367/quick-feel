@@ -31,7 +31,7 @@ const HomePage: React.FC = async () => {
           <TimeWasted />
           <p className="flex items-center justify-center gap-2">
             <IoArrowDownOutline />
-            There's an easier way
+            There&apos;s an easier way
           </p>
         </Section>
 
