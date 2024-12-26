@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "tsx lib/db/migrate && next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint && biome lint --write --unsafe",
     "lint:fix": "next lint --fix && biome lint --write --unsafe",
@@ -58,6 +59,7 @@
     "nanoid": "^5.0.8",
     "next": "15.0.3-canary.2",
     "next-auth": "5.0.0-beta.25",
+    "next-sitemap": "^4.2.3",
     "next-themes": "^0.3.0",
     "orderedmap": "^2.1.1",
     "postgres": "^3.4.4",
