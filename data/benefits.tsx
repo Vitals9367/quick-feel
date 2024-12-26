@@ -23,7 +23,7 @@ export const benefits: IBenefit[] = [
                 icon: <FiDollarSign size={26} />
             }
         ],
-        imageSrc: "/images/mockup-adventure-planning.webp"
+        imageSrc: "/images/planning.jpg"
     },
     {
         title: "Real-Time Guidance",
@@ -45,7 +45,7 @@ export const benefits: IBenefit[] = [
                 icon: <FiMusic size={26} />
             }
         ],
-        imageSrc: "/images/mockup-real-time-guidance.webp"
+        imageSrc: "/images/real-time.jpg"
     },
     {
         title: "Comprehensive Travel Tools",
@@ -67,7 +67,7 @@ export const benefits: IBenefit[] = [
                 icon: <FiCamera size={26} />
             }
         ],
-        imageSrc: "/images/mockup-travel-tools.webp"
+        imageSrc: "/images/app.jpg"
     },
     {
         title: "Seamless Accessibility",
@@ -89,6 +89,6 @@ export const benefits: IBenefit[] = [
                 icon: <FiMessageSquare size={26} />
             }
         ],
-        imageSrc: "/images/mockup-seamless-accessibility.webp"
+        imageSrc: "/images/design.jpg"
     }
 ];

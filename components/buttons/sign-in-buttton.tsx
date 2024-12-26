@@ -1,6 +1,7 @@
 'use client'
 
 import { signIn } from "next-auth/react"
+import { redirect } from "next/navigation"
 import React from 'react'
 
 interface SignInButtonProps {
@@ -10,7 +11,7 @@ interface SignInButtonProps {
 const SignInButton: React.FC<SignInButtonProps> = ({text = "Sign Up"}) => {
 
     const onClick = () => {
-        signIn("keycloak", { callbackUrl: '/chat' });
+        redirect('/login');
     }
 
     return (

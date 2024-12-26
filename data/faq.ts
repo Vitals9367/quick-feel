@@ -4,34 +4,34 @@ import { siteDetails } from "./siteDetails";
 export const faqs: IFAQ[] = [
     {
         question: `Is ${siteDetails.siteName} secure?`,
-        answer: 'Absolutely. We prioritize your privacy and security. All your data is protected with bank-level encryption, ensuring your travel information stays safe.',
+        answer: `Yes! ${siteDetails.siteName} ensures the security and privacy of your data with bank-level encryption, keeping all your travel details safe.`,
     },
     {
         question: `Can I use ${siteDetails.siteName} on multiple devices?`,
-        answer: 'Yes! Adventurer Guide syncs seamlessly across all your devices – smartphone, tablet, or desktop – making it easy to plan and explore from anywhere.',
+        answer: `Absolutely! ${siteDetails.siteName} is fully synced across devices – whether you’re using a smartphone, tablet, or desktop, your travel plans are accessible anytime, anywhere.`,
+    },
+    {
+        question: `How does ${siteDetails.siteName} create personalized travel plans?`,
+        answer: `${siteDetails.siteName} customizes your travel itinerary based on your preferences, budget, and timeline. It takes into account your interests to suggest the best places and experiences tailored just for you.`,
     },
     {
         question: 'Can I access maps and guides offline?',
-        answer: 'Definitely! You can download maps, itineraries, and guides to use them offline, ensuring you stay on track even in remote areas with no internet connection.',
+        answer: 'Yes! You can download your itineraries, maps, and travel guides to access them offline while you explore remote areas.',
     },
     {
-        question: 'Do I need internet access to use all features?',
-        answer: 'Some features, like real-time chat guidance and live updates, require internet access. However, offline tools like maps and saved itineraries are fully functional without it.',
+        question: `Do I need an internet connection to use ${siteDetails.siteName}?`,
+        answer: 'Certain features like real-time chat guidance and live updates require internet access, but offline tools like saved maps and itineraries will work without a connection.',
     },
     {
-        question: 'How does Adventurer Guide create personalized travel plans?',
-        answer: `Adventurer Guide uses advanced algorithms to tailor itineraries based on your preferences, interests, budget, and schedule. Whether you love nature, culture, or adventure, we’ve got you covered!`,
+        question: 'How does the chat feature work?',
+        answer: `${siteDetails.siteName} acts as your travel companion, providing real-time recommendations, directions, and tips through an easy-to-use chat interface.`,
     },
     {
-        question: 'What if I get lost or need help during my trip?',
-        answer: 'No worries! Adventurer Guide provides real-time guidance and support. You can get live directions, ask for tips, or use interactive maps to navigate.',
+        question: 'What if I need help while traveling?',
+        answer: `${siteDetails.siteName} offers real-time guidance for any travel-related queries. Whether it’s directions or recommendations, help is just a message away.`,
     },
     {
-        question: 'Is there customer support available?',
-        answer: 'Of course! Our dedicated support team is available 24/7 via chat or email to help with any questions or issues you may encounter.',
-    },
-    {
-        question: 'Can I share my itinerary with others?',
-        answer: 'Yes! You can easily share your travel plans with friends and family through a shareable link or by exporting your itinerary.',
+        question: 'Is customer support available?',
+        answer: 'Yes, our support team is available via chat or email for any assistance you may need during your trip. We’re here to help!',
     }
 ];

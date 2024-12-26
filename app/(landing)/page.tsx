@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth/auth";
 
 import Hero from "@/components/Hero";
 import Testimonials from "@/components/Testimonials";
@@ -11,9 +10,10 @@ import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Stats from "@/components/Stats";
 import CTA from "@/components/CTA";
-import TimeWasted from "@/components/TimeWasted";
+import TimeBreakdown from "@/components/TimeBreakdown";
 import Vsl from "@/components/Vsl";
 import { IoArrowDownOutline } from "react-icons/io5";
+import { WaitlistForm } from "@/components/WaitlistForm";
 
 const HomePage: React.FC = async () => {
 
@@ -23,13 +23,13 @@ const HomePage: React.FC = async () => {
       {/* <Logos /> */}
       <Container>
 
-        <Section
-          id="time-wasted"
-          title="Where Does Your Time Go?"
-          description="See How Much Time You’re Spending on Non-Adventuring Tasks"
-        >
-          <TimeWasted />
-          <p className="flex items-center justify-center gap-2">
+      <Section
+        id="time-wasted"
+        title="Where Does Your Time Go?"
+        description="Discover how much time you're losing on planning instead of exploring during each trip."
+      >
+          <TimeBreakdown />
+          <p className="flex items-center justify-center gap-2 mt-14">
             <IoArrowDownOutline />
             There&apos;s an easier way
           </p>
@@ -37,19 +37,19 @@ const HomePage: React.FC = async () => {
 
         <Section
           id="benefits"
-          title="Benefits"
-          description="Simple, transparent pricing. No surprises."
+          title="Make Travel Easy and Enjoyable"
+          description="Forget the stress of planning. Unlock expertly curated itineraries, insider tips, and worry-free travel experiences customized just for you."
         >
           <Benefits />
         </Section>
 
-        <Section
+        {/* <Section
           id="pricing"
           title="Pricing"
           description="Simple, transparent pricing. No surprises."
         >
           <Pricing />
-        </Section>
+        </Section> */}
 
         {/* <Section
           id="testimonials"
@@ -59,11 +59,17 @@ const HomePage: React.FC = async () => {
           <Testimonials />
         </Section> */}
 
+        {/* <Stats /> */}
+
+        <Section
+          id="waitlist"
+        >
+          <WaitlistForm />
+        </Section>
+        
         <FAQ />
 
-        {/* <Stats /> */}
-        
-        <CTA />
+        {/* <CTA /> */}
       </Container>
     </>
   );

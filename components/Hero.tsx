@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import { heroDetails } from '@/data/hero';
-import SignInButton from './buttons/sign-in-buttton';
+import JoinWaitlistButton from './buttons/JoinWaitlistButton';
 
 const Hero: React.FC = () => {
     return (
@@ -19,10 +19,13 @@ const Hero: React.FC = () => {
             </div>
 
             <div className="text-center">
-                <h1 className="text-4xl md:text-6xl md:leading-tight font-bold text-foreground max-w-lg md:max-w-2xl mx-auto">{heroDetails.heading}</h1>
+                <h1 className="text-4xl md:text-6xl md:leading-tight font-bold text-foreground max-w-lg md:max-w-2xl mx-auto">
+                    Your <span className='text-[var(--primary)] underline'>Travel Companion</span>, <span className='text-[var(--primary)] underline'>Guide</span>,
+                    and <span className='text-[var(--primary)] underline'>Planner</span> in One Chat
+                </h1>
                 <p className="mt-4 text-foreground max-w-lg mx-auto">{heroDetails.subheading}</p>
                 <div className="mt-6 flex flex-col sm:flex-row items-center sm:gap-4 w-fit mx-auto">
-                    <SignInButton text="Start Your Journey Today – Try Adventurers Guide!" />
+                    <JoinWaitlistButton text="Be the First to Plan Stress-Free Adventures – Join the Waitlist!" />
                 </div>
                 <Image
                     src={heroDetails.centerImageSrc}

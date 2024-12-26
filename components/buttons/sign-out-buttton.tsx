@@ -1,6 +1,6 @@
 'use client'
 
-import { signOut } from "next-auth/react"
+import { signOutAction } from "@/app/(auth)/actions"
 import React from 'react'
 
 interface SignOutButtonProps {
@@ -8,13 +8,8 @@ interface SignOutButtonProps {
 }
 
 const SignOutButton: React.FC<SignOutButtonProps> = ({text = "Sign Out"}) => {
-
-    const onClick = async () => {
-        signOut({ redirectTo: '/' });
-    }
-
     return (
-        <button onClick={onClick}>
+        <button onClick={signOutAction}>
             {text}
         </button>
     )

@@ -9,7 +9,7 @@ import { AuthForm } from '@/components/auth-form';
 import { SubmitButton } from '@/components/submit-button';
 
 import { login, type LoginActionState } from '../actions';
-import { signIn } from '../../../lib/auth/auth';
+import GoogleLoginButton from '@/components/buttons/GoogleLoginButton';
 
 export default function Page() {
   const router = useRouter();
@@ -36,9 +36,8 @@ export default function Page() {
   }, [state.status, router]);
 
   const handleSubmit = (formData: FormData) => {
-    // setEmail(formData.get('email') as string);
-    // formAction(formData);
-    signIn("keycloak")
+    setEmail(formData.get('email') as string);
+    formAction(formData);
   };
 
   return (
@@ -52,6 +51,7 @@ export default function Page() {
         </div>
         <AuthForm action={handleSubmit} defaultEmail={email}>
           <SubmitButton isSuccessful={isSuccessful}>Sign in</SubmitButton>
+          {/* <GoogleLoginButton /> */}
           <p className="text-center text-sm text-gray-600 mt-4 dark:text-zinc-400">
             {"Don't have an account? "}
             <Link

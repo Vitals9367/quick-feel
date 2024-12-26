@@ -2,9 +2,10 @@
 
 import { z } from 'zod';
 
-import { createUser, getUser } from '@/lib/db/queries';
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 
-import { signIn } from '../../lib/auth/auth';
+import { createClient } from '@/utils/supabase/server'
 
 const authFormSchema = z.object({
   email: z.string().email(),
@@ -20,18 +21,22 @@ export const login = async (
   formData: FormData,
 ): Promise<LoginActionState> => {
   try {
+    const supabase = await createClient()
+
     const validatedData = authFormSchema.parse({
       email: formData.get('email'),
       password: formData.get('password'),
     });
 
-    await signIn('credentials', {
-      email: validatedData.email,
-      password: validatedData.password,
-      redirect: false,
-    });
+    const { error } = await supabase.auth.signInWithPassword(validatedData);
+
+    if (!error) {
+      revalidatePath('/', 'layout')
+      redirect('/chat')
+    }
 
     return { status: 'success' };
+
   } catch (error) {
     if (error instanceof z.ZodError) {
       return { status: 'invalid_data' };
@@ -56,22 +61,19 @@ export const register = async (
   formData: FormData,
 ): Promise<RegisterActionState> => {
   try {
+    const supabase = await createClient()
+
     const validatedData = authFormSchema.parse({
       email: formData.get('email'),
       password: formData.get('password'),
     });
 
-    const [user] = await getUser(validatedData.email);
-
-    if (user) {
-      return { status: 'user_exists' } as RegisterActionState;
+    const { error } = await supabase.auth.signUp(validatedData)
+    
+    if (!error) {
+      revalidatePath('/', 'layout')
+      redirect('/chat')
     }
-    await createUser(validatedData.email, validatedData.password);
-    await signIn('credentials', {
-      email: validatedData.email,
-      password: validatedData.password,
-      redirect: false,
-    });
 
     return { status: 'success' };
   } catch (error) {
@@ -81,4 +83,11 @@ export const register = async (
 
     return { status: 'failed' };
   }
+};
+
+
+export const signOutAction = async () => {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  return redirect("/login");
 };

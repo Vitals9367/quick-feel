@@ -2,8 +2,8 @@ import SectionTitle from "./SectionTitle";
 
 interface Props {
     id: string;
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
 }
 
 const Section: React.FC<React.PropsWithChildren<Props>> = ({ id, title, description, children }: React.PropsWithChildren<Props>) => {

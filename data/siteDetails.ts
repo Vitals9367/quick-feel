@@ -8,6 +8,6 @@ export const siteDetails = {
     language: 'en-us',
     locale: 'en-US',
     siteLogo: `${process.env.BASE_PATH || ''}/images/logo.svg`,
-    googleAnalyticsId: '',
+    googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID || '',
     email: 'support@adventurerguide.com'
 }

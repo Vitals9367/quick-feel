@@ -51,3 +51,8 @@ export interface ISocials {
     x?: string;
     [key: string]: string | undefined;
 }
+
+export interface ITimeBreakdown {
+    hours: number | '∞';
+    task: string;
+};

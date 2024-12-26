@@ -11,6 +11,7 @@ import { siteDetails } from '@/data/siteDetails';
 import { menuItems } from '@/data/menuItems';
 import SignInButton from './buttons/sign-in-buttton';
 import Image from 'next/image';
+import JoinWaitlistButton from './buttons/JoinWaitlistButton';
 
 const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +23,7 @@ const Header: React.FC = () => {
     return (
         <header className="bg-transparent fixed top-0 left-0 right-0 md:absolute z-50 mx-auto w-full">
             <Container className="!px-0">
-                <nav className="shadow-md md:shadow-none bg-white md:bg-transparent mx-auto flex justify-between items-center py-2 px-5 md:py-10">
+                <nav className="shadow-md md:shadow-none bg-white md:bg-transparent mx-auto flex justify-between items-center py-2 px-5 md:py-10 h-12">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
                         <Image src={siteDetails.siteLogo} alt='logo' width={36} height={36} style={{ transform: 'translateY(4px)' }} />
@@ -32,7 +33,7 @@ const Header: React.FC = () => {
                     </Link>
 
                     {/* Desktop Menu */}
-                    <ul className="hidden md:flex space-x-6">
+                    <ul className="hidden md:flex space-x-6 items-center">
                         {menuItems.map(item => (
                             <li key={item.text}>
                                 <Link href={item.url} className="text-foreground hover:text-foreground-accent transition-colors">
@@ -41,7 +42,7 @@ const Header: React.FC = () => {
                             </li>
                         ))}
                         <li>
-                            <SignInButton text='Sign Up'/>
+                            <JoinWaitlistButton />
                         </li>
                     </ul>
 
@@ -85,9 +86,7 @@ const Header: React.FC = () => {
                             </li>
                         ))}
                         <li>
-                            <Link href="#cta" className="text-black bg-primary hover:bg-primary-accent px-5 py-2 rounded-full block w-fit" onClick={toggleMenu}>
-                                Get Started
-                            </Link>
+                            <JoinWaitlistButton />
                         </li>
                     </ul>
                 </div>

@@ -13,14 +13,18 @@ export const footerDetails: {
             url: "#features"
         },
         {
-            text: "Pricing",
-            url: "#pricing"
+            text: "Waitlist",
+            url: "#waitlist"
+        },
+        {
+            text: "FAQ",
+            url: "#faq"
         }
     ],
     email: 'support@adventurerguide.com',
     socials: {
-        x: 'https://twitter.com/x',
-        github: 'https://github.com',
-        linkedin: 'https://www.linkedin.com'
+        // x: 'https://twitter.com/x',
+        // github: 'https://github.com',
+        // linkedin: 'https://www.linkedin.com'
     }
 }

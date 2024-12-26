@@ -7,7 +7,7 @@ import {
 } from 'ai';
 import { z } from 'zod';
 
-import { auth } from '@/lib/auth/auth';
+import { auth } from '@/app/(auth)/auth';
 import { customModel } from '@/lib/ai';
 import { models } from '@/lib/ai/models';
 import {
