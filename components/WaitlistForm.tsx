@@ -53,8 +53,7 @@ export const WaitlistForm = () => {
                     </ul>
                 </div>
 
-                <p className="mb-6">Don't miss out – limited spots available!</p>
-                <p className="mb-6">Enter your email below to secure your place:</p>
+                <p className="mb-6">Don&apos;t miss out – limited spots available!</p>
 
                 {isSent ? (
                     <p className="text-[var(--primary)] font-bold text-xl">Thank you for signing up!</p>
