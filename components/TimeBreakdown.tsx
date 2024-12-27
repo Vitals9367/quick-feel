@@ -26,7 +26,7 @@ const TimeBreakdown: React.FC = () => {
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex justify-between items-center">
                   <span className="text-xl font-semibold text-gray-800 dark:text-gray-200">Total wasted hours:</span>
-                  <span className="text-3xl font-bold text-[#ff7043]">{totalHours}+</span>
+                  <span className="text-3xl font-bold text-[#ff7043]">{totalHours}+ / per trip</span>
                 </div>
               </div>
             </div>

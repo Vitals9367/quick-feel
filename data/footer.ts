@@ -10,16 +10,20 @@ export const footerDetails: {
     quickLinks: [
         {
             text: "Features",
-            url: "#features"
+            url: "/#features"
         },
         {
             text: "Waitlist",
-            url: "#waitlist"
+            url: "/#waitlist"
         },
         {
             text: "FAQ",
-            url: "#faq"
-        }
+            url: "/#faq"
+        },
+        {
+            text: "Posts",
+            url: "/posts"
+        },
     ],
     email: 'support@adventurerguide.com',
     socials: {

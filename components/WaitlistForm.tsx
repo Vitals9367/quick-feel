@@ -36,7 +36,7 @@ export const WaitlistForm = () => {
     return (
         <section className="lg:my-20 drop-shadow-lg">
             <div className="relative h-full w-full z-10 mx-auto py-12 sm:py-20">
-            <div className="rounded-xl absolute inset-0 -z-10 h-full w-full bg-cover bg-center" style={{ backgroundImage: 'url(images/waitlist-background.jpg)' }}>
+            <div className="rounded-xl absolute inset-0 -z-10 h-full w-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/waitlist-background.jpg)' }}>
                 <div className="rounded-xl absolute inset-0 bg-black opacity-75"></div>
             </div>
             <div className="h-full flex flex-col items-center justify-center text-white text-center px-5 py-8">
