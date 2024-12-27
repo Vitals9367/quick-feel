@@ -12,7 +12,7 @@ export function Footer() {
       <Container>
         <div className="py-28 flex flex-col lg:flex-row items-center relative">
           <div className="text-center lg:text-left">
-            <h3 className="mb-4 text-4xl lg:text-[2.5rem] font-bold text-[var(--primary)] tracking-tighter leading-tight text-center lg:text-left mb-10 lg:pr-4">
+            <h3 className="text-4xl lg:text-[2.5rem] font-bold text-[var(--primary)] tracking-tighter leading-tight text-center lg:text-left mb-10 lg:pr-4">
               Become a Founding Member of Adventurer Guide!
             </h3>
             <p>Join the waitlist today and enjoy exclusive lifetime benefits:</p>
