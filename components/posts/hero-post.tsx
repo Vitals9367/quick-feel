@@ -1,4 +1,3 @@
-import Avatar from "@/components/posts/avatar";
 import CoverImage from "@/components/posts/cover-image";
 import { type Author } from "@/interfaces/author";
 import Link from "next/link";

@@ -1,4 +1,3 @@
-import { EXAMPLE_PATH } from "@/lib/constants";
 import Container from "../Container";
 import JoinWaitlistButton from "../buttons/JoinWaitlistButton";
 import { Button } from "../ui/button";
