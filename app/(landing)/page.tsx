@@ -25,8 +25,8 @@ const HomePage: React.FC = async () => {
 
       <Section
         id="time-wasted"
-        title="Where Does Your Time Go?"
-        description="Discover how much time you're losing on planning instead of exploring during each trip."
+        title="How Much Time Are You Wasting on Travel Planning?"
+        description="Planning a trip should be exciting, not exhausting. Here's how much time you're likely losing on tedious tasks instead of enjoying the adventure:"
       >
           <TimeBreakdown />
           <p className="flex items-center justify-center gap-2 mt-14">
@@ -37,8 +37,8 @@ const HomePage: React.FC = async () => {
 
         <Section
           id="benefits"
-          title="Make Travel Easy and Enjoyable"
-          description="Forget the stress of planning. Unlock expertly curated itineraries, insider tips, and worry-free travel experiences customized just for you."
+          title="Why Choose Adventurer Guide?"
+          description="Let our intelligent assistant save you valuable hours by automating and optimizing your trip planning. Spend more time exploring, less time stressing."
         >
           <Benefits />
         </Section>

@@ -15,7 +15,7 @@ const TimeBreakdown: React.FC = () => {
             <div className="space-y-6">
               <ul className="space-y-3">
                 {timeBreakdownData.map((task, index) => (
-                  <li key={index} className="flex justify-between items-center py-3 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                  <li key={index} className=" flex justify-between items-center py-3 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
                     <span className="text-lg font-medium text-gray-700 dark:text-gray-300">
                       {task.task}
                     </span>
@@ -25,8 +25,8 @@ const TimeBreakdown: React.FC = () => {
               </ul>
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex justify-between items-center">
-                  <span className="text-xl font-semibold text-gray-800 dark:text-gray-200">Total hours of headaches:</span>
-                  <span className="text-2xl font-bold text-[#ff7043] underline">{'>'} {totalHours}</span>
+                  <span className="text-xl font-semibold text-gray-800 dark:text-gray-200">Total wasted hours:</span>
+                  <span className="text-3xl font-bold text-[#ff7043]">{totalHours}+</span>
                 </div>
               </div>
             </div>

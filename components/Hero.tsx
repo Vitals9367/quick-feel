@@ -20,12 +20,12 @@ const Hero: React.FC = () => {
 
             <div className="text-center">
                 <h1 className="text-4xl md:text-6xl md:leading-tight font-bold text-foreground max-w-lg md:max-w-2xl mx-auto">
-                    Your <span className='text-[var(--primary)] underline'>Travel Companion</span>, <span className='text-[var(--primary)] underline'>Guide</span>,
-                    and <span className='text-[var(--primary)] underline'>Planner</span> in One Chat
+                    Plan, Explore, and Navigate Effortlessly with Our <span className='text-[var(--primary)] underline'>AI-Powered Chat Assistant</span>
                 </h1>
                 <p className="mt-4 text-foreground max-w-lg mx-auto">{heroDetails.subheading}</p>
-                <div className="mt-6 flex flex-col sm:flex-row items-center sm:gap-4 w-fit mx-auto">
-                    <JoinWaitlistButton text="Be the First to Plan Stress-Free Adventures – Join the Waitlist!" />
+                <div className="mt-6 sm:flex-row items-center sm:gap-4 w-fit mx-auto">
+                    <JoinWaitlistButton text="Transform the way you travel!" />
+                    <p className='mt-2 text-[0.9rem]'>Join the exclusive waitlist today and be the first to experience seamless, AI-powered travel assistance</p>
                 </div>
                 <Image
                     src={heroDetails.centerImageSrc}

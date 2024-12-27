@@ -4,8 +4,8 @@ import { IBenefit } from "@/types";
 
 export const benefits: IBenefit[] = [
     {
-        title: "Personalized Adventure Planning",
-        description: "Plan your next journey with customized itineraries that match your interests, budget, and schedule.",
+        title: "Plan Like a Pro, Your Way",
+        description: "Create custom itineraries tailored to your interests, budget, and schedule. From scenic hiking trails to hidden cultural gems, we make every trip truly yours.",
         bullets: [
             {
                 title: "Tailored Itineraries",
@@ -23,11 +23,12 @@ export const benefits: IBenefit[] = [
                 icon: <FiDollarSign size={26} />
             }
         ],
-        imageSrc: "/images/planning.jpg"
+        imageSrc: "/images/planning.jpg",
+        imageAlt: "Traveler reviewing a custom itinerary."
     },
     {
-        title: "Real-Time Guidance",
-        description: "Your virtual guide, offering tips, directions, and insights throughout your journey.",
+        title: "Your Virtual Travel Companion",
+        description: "Navigate confidently with interactive maps, live tips, and on-the-go advice. Get instant recommendations and insights anytime, anywhere.",
         bullets: [
             {
                 title: "Interactive Maps",
@@ -45,11 +46,12 @@ export const benefits: IBenefit[] = [
                 icon: <FiMusic size={26} />
             }
         ],
-        imageSrc: "/images/real-time.jpg"
+        imageSrc: "/images/real-time.jpg",
+        imageAlt: "Traveler using a smartphone for directions."
     },
     {
-        title: "Comprehensive Travel Tools",
-        description: "Keep all your travel essentials in one place for a seamless adventure experience.",
+        title: "All Your Essentials in One Place",
+        description: "Access bookings, tickets, and key trip details with ease. Enjoy offline tools for seamless travel, even in remote area.",
         bullets: [
             {
                 title: "Integrated Bookings",
@@ -67,11 +69,12 @@ export const benefits: IBenefit[] = [
                 icon: <FiCamera size={26} />
             }
         ],
-        imageSrc: "/images/app.jpg"
+        imageSrc: "/images/app.jpg",
+        imageAlt: "Organized trip bookings and tickets on a tablet."
     },
     {
-        title: "Seamless Accessibility",
-        description: "Adventurer Guide stays with you, offering a smooth experience for planning and exploring.",
+        title: "Travel Made Effortless",
+        description: "Sync your plans across all devices. With a user-friendly chat-first design, it's like having a personal travel assistant in your pocket.",
         bullets: [
             {
                 title: "Cross-Device Sync",
@@ -89,6 +92,7 @@ export const benefits: IBenefit[] = [
                 icon: <FiMessageSquare size={26} />
             }
         ],
-        imageSrc: "/images/design.jpg"
+        imageSrc: "/images/design.jpg",
+        imageAlt: "Adventurer syncing plans across devices."
     }
 ];

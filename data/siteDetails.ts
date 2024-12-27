@@ -3,7 +3,7 @@ export const siteDetails = {
     siteUrl: 'https://adventurer-guide.vercel.app/',
     metadata: {
         title: 'Adventurer Guide - Your AI-Powered Travel Companion',
-        description: 'Plan adventures, explore destinations, and travel with ease using Adventurer Guide, your all-in-one AI travel assistant.',
+        description: 'Plan your adventures effortlessly with Adventurer Guide. Tailored itineraries, real-time guidance, travel tools, and immersive experiences—all in one app. Join the waitlist now!',
     },
     language: 'en-us',
     locale: 'en-US',
