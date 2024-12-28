@@ -1,3 +1,4 @@
+const htmlTemplate = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,3 +106,6 @@
     </div>
 </body>
 </html>
+`;
+
+export default htmlTemplate; 
