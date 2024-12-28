@@ -1,6 +1,7 @@
 'use server';
 import nodemailer from 'nodemailer';
 import { promises as fs } from 'fs';
+import path from 'path';
 const SMTP_SERVER_HOST = process.env.SMTP_SERVER_HOST;
 const SMTP_SERVER_USERNAME = process.env.SMTP_SERVER_USERNAME;
 const SMTP_SERVER_PASSWORD = process.env.SMTP_SERVER_PASSWORD;
@@ -8,7 +9,7 @@ const SITE_MAIL_RECIEVER = process.env.SITE_MAIL_RECIEVER;
 const SITE_MAIL_SENDER = process.env.SITE_MAIL_SENDER;
 
 export async function sendWelcomingEmail(email: string) {
-    const htmlTemplate = await fs.readFile(process.cwd() + '/emails/waitlist-signup.html', 'utf-8');
+    const htmlTemplate = await fs.readFile(path.join(process.cwd(), 'emails', 'waitlist-signup.html'), 'utf-8');
     await sendMail({
         sendTo: email,
         subject: 'Welcome to the Waitlist!',
