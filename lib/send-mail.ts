@@ -8,7 +8,7 @@ const SITE_MAIL_RECIEVER = process.env.SITE_MAIL_RECIEVER;
 const SITE_MAIL_SENDER = process.env.SITE_MAIL_SENDER;
 
 export async function sendWelcomingEmail(email: string) {
-    const htmlTemplate = await fs.readFile('emails/waitlist-signup.html', 'utf-8');
+    const htmlTemplate = await fs.readFile(process.cwd() + '/emails/waitlist-signup.html', 'utf-8');
     await sendMail({
         sendTo: email,
         subject: 'Welcome to the Waitlist!',
