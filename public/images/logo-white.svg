@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 30 37.5" style="enable-background:new 0 0 30 30;" xml:space="preserve">
+  <g>
+    <path d="M4.54,18.388L2.203,17.22c0.931,5.397,5.18,9.646,10.577,10.577l-1.168-2.337C8.269,24.375,5.625,21.731,4.54,18.388z" fill="white"/>
+    <path d="M18.388,25.461l-1.168,2.336c5.397-0.931,9.646-5.18,10.577-10.577l-2.336,1.168   C24.375,21.731,21.731,24.375,18.388,25.461z" fill="white"/>
+    <path d="M25.46,11.612l2.337,1.168c-0.931-5.397-5.18-9.646-10.577-10.577l1.168,2.337C21.731,5.625,24.375,8.269,25.46,11.612z" fill="white"/>
+    <path d="M11.612,4.54l1.168-2.337C7.383,3.134,3.134,7.383,2.203,12.78l2.337-1.168C5.625,8.269,8.269,5.625,11.612,4.54z" fill="white"/>
+    <path d="M30,15l-10-5L15,0l-5,10L0,15l10,5l5,10l5-10L30,15z M20.197,11.217L27.764,15h-11.35L20.197,11.217z M15,2.236v11.35   l-3.783-3.783L15,2.236z M9.803,18.783L2.236,15h11.35L9.803,18.783z M15,27.764v-11.35l3.783,3.783L15,27.764z" fill="white"/>
+  </g>
+  <text x="0" y="45" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Yo! Baba</text>
+  <text x="0" y="50" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text>
+</svg>
