@@ -1,66 +1,113 @@
-import Link from 'next/link';
-import React from 'react';
-import { FaFingerprint } from 'react-icons/fa';
+'use client'
 
-import { siteDetails } from '@/data/siteDetails';
-import { footerDetails } from '@/data/footer';
-import { getPlatformIconByName } from '@/utils/utils';
-import Image from 'next/image';
+import Link from 'next/link'
+import { Button } from "@/components/ui/button"
+import { Mail } from 'lucide-react'
+import { motion } from "framer-motion"
+import { fadeIn } from './animations'
 
-const Footer: React.FC = () => {
-    return (
-        <footer className="bg-hero-background text-foreground py-10">
-            <div className="max-w-7xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div>
-                    <Link href="/" className="flex items-center gap-2">
-                        <Image src={siteDetails.siteLogo} alt='logo' width={36} height={36} style={{ transform: 'translateY(4px)' }} />
-                        <h3 className="manrope text-xl font-semibold cursor-pointer">
-                            {siteDetails.siteName}
-                        </h3>
-                    </Link>
-                    <p className="mt-3.5 text-foreground-accent">
-                        {footerDetails.subheading}
-                    </p>
-                </div>
-                <div>
-                    <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul className="text-foreground-accent">
-                        {footerDetails.quickLinks.map(link => (
-                            <li key={link.text} className="mb-2">
-                                <Link href={link.url} className="hover:text-foreground">{link.text}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div>
-                    <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+export default function Footer() {
+  // Function to handle smooth scroll to sections
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
-                    {footerDetails.email && <a href={`mailto:${footerDetails.email}`}  className="block text-foreground-accent hover:text-foreground">Email: {footerDetails.email}</a>}
-
-                    {footerDetails.socials && (
-                        <div className="mt-5 flex items-center gap-5 flex-wrap">
-                            {Object.keys(footerDetails.socials).map(platformName => {
-                                if (platformName && footerDetails.socials[platformName]) {
-                                    return (
-                                        <Link
-                                            href={footerDetails.socials[platformName]}
-                                            key={platformName}
-                                            aria-label={platformName}
-                                        >
-                                            {getPlatformIconByName(platformName)}
-                                        </Link>
-                                    )
-                                }
-                            })}
-                        </div>
-                    )}
-                </div>
+  return (
+    <motion.footer 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeIn}
+      className="w-full py-12 bg-gray-50 border-t border-gray-200"
+    >
+      <div className="container px-4 md:px-6 mx-auto max-w-6xl">
+        <div className="grid gap-8 md:gap-12 grid-cols-1 md:grid-cols-2">
+          {/* Company Info */}
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-[#2A9D8F] rounded-full" />
+              <span className="text-xl font-bold">QuickFeel</span>
             </div>
-            <div className="mt-8 md:text-center text-foreground-accent px-6">
-                <p>Copyright &copy; {new Date().getFullYear()} {siteDetails.siteName}. All rights reserved.</p>
+            <p className="text-gray-600 max-w-sm">
+              Turning feedback into actionable insights.
+            </p>
+            <div className="flex items-center space-x-2 text-gray-600">
+              <Mail className="h-4 w-4" />
+              <a 
+                href="mailto:support@quickfeel.com"
+                className="hover:text-[#2A9D8F] transition-colors"
+              >
+                support@quickfeel.com
+              </a>
             </div>
-        </footer>
-    );
-};
+          </div>
 
-export default Footer;
+          {/* Quick Links and CTA */}
+          <div className="space-y-8">
+            {/* Navigation */}
+            <nav className="flex flex-wrap gap-4">
+              <button
+                onClick={() => scrollToSection('features')}
+                className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
+              >
+                Features
+              </button>
+              <button
+                onClick={() => scrollToSection('pricing')}
+                className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
+              >
+                Pricing
+              </button>
+              <Link 
+                href="/contact"
+                className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
+              >
+                Contact Us
+              </Link>
+              <Link 
+                href="/privacy"
+                className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
+              >
+                Privacy Policy
+              </Link>
+            </nav>
+
+            {/* CTA */}
+            <div className="space-y-4">
+              <p className="text-gray-600">
+                Ready to get started?
+              </p>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button 
+                  variant="outline" 
+                  className="border-[#2A9D8F] text-[#2A9D8F] hover:bg-[#2A9D8F] hover:text-white transition-colors"
+                >
+                  Sign up now
+                </Button>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-600">
+              © 2025 QuickFeel. All rights reserved.
+            </p>
+            <p className="text-sm text-gray-600 text-center md:text-right">
+              Join hundreds of businesses already optimizing their feedback processes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.footer>
+  )
+}
+

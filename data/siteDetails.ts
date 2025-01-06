@@ -1,13 +1,13 @@
 export const siteDetails = {
-    siteName: 'Adventurer Guide',
-    siteUrl: 'https://adventurer-guide.vercel.app/',
+    siteName: 'QuickFeel',
+    siteUrl: 'https://quickfeel.vercel.app/',
     metadata: {
-        title: 'Adventurer Guide - Your AI-Powered Travel Companion',
-        description: 'Plan your adventures effortlessly with Adventurer Guide. Tailored itineraries, real-time guidance, travel tools, and immersive experiences—all in one app. Join the waitlist now!',
+        title: 'QuickFeel - Transform Feedback into Insights',
+        description: 'Empower your business with actionable insights. Use QuickFeel to analyze customer feedback effortlessly, categorize by emotion and sentiment, and make data-driven decisions.',
     },
     language: 'en-us',
     locale: 'en-US',
     siteLogo: `${process.env.BASE_PATH || ''}/images/logo.svg`,
     googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID || '',
-    email: 'support@adventurerguide.com'
-}
+    email: 'support@quickfeel.com'
+};

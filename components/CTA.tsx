@@ -1,29 +1,59 @@
-import { ctaDetails } from "@/data/cta"
+'use client'
 
-import SignInButton from "./buttons/sign-in-buttton"
+import { Button } from "@/components/ui/button"
+import Image from 'next/image'
+import { motion } from "framer-motion"
+import { fadeIn, scaleUp } from './animations'
+import Container from "./Container"
 
-const CTA: React.FC = () => {
-    return (
-        <section id="cta" className="mt-10 mb-5 lg:my-20">
-            <div className="relative h-full w-full z-10 mx-auto py-12 sm:py-20">
-                <div className="h-full w-full">
-                    <div className="rounded-3xl opacity-95 absolute inset-0 -z-10 h-full w-full bg-[#050a02] bg-[linear-gradient(to_right,#12170f_1px,transparent_1px),linear-gradient(to_bottom,#12170f_1px,transparent_1px)]">
-                        <div className="rounded-3xl absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_600px_at_50%_500px,#1C1C02,transparent)]"></div>
-                    </div>
-
-                    <div className="h-full flex flex-col items-center justify-center text-white text-center px-5">
-                        <h2 className="text-2xl sm:text-3xl md:text-5xl md:leading-tight font-semibold mb-4 max-w-2xl">{ctaDetails.heading}</h2>
-
-                        <p className="mx-auto max-w-xl md:px-5">{ctaDetails.subheading}</p>
-
-                        <div className="mt-4 flex flex-col sm:flex-row items-center sm:gap-4">
-                            <SignInButton />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
+export default function CTA() {
+  return (
+    <section className="w-full py-24 bg-[#1D3557] text-white overflow-hidden">
+      <Container>
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeIn}
+          className="flex flex-col items-center space-y-8 text-center"
+        >
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            Unlock the Power of Customer Feedback Today
+          </h2>
+          <p className="mx-auto max-w-[700px] text-gray-300 md:text-xl">
+            Take the guesswork out of improving your business. QuickFeel makes it easy to turn feedback into growth.
+          </p>
+          <div className="flex flex-col items-center space-y-8">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button 
+                size="lg" 
+                className="bg-[#2A9D8F] hover:bg-[#238579] text-white text-lg px-8 py-6 relative after:absolute after:inset-0 after:rounded-md after:border-2 after:border-[#2A9D8F] after:animate-pulse after:opacity-70"
+              >
+                Start Your Journey Now – Get Actionable Insights in Minutes
+              </Button>
+            </motion.div>
+            <p className="text-gray-300 text-sm mt-4">
+              Join hundreds of businesses already using QuickFeel to transform feedback into results.
+            </p>
+            <motion.div 
+              variants={scaleUp}
+              className="w-full max-w-2xl rounded-lg overflow-hidden shadow-[0_0_30px_rgba(42,157,143,0.2)] mt-8"
+            >
+              <Image
+                src="/quick-feel-dashboard2.jpg"
+                alt="QuickFeel Analytics Dashboard"
+                width={500}
+                height={250}
+                className="w-full h-auto"
+              />
+            </motion.div>
+          </div>
+        </motion.div>
+      </Container>
+    </section>
+  )
 }
 
-export default CTA

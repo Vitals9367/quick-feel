@@ -1,46 +1,57 @@
-import React from 'react';
-import Image from 'next/image';
+'use client'
 
-import { heroDetails } from '@/data/hero';
-import JoinWaitlistButton from './buttons/JoinWaitlistButton';
+import Image from 'next/image'
+import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
+import { fadeIn, scaleUp } from './animations'
 
-const Hero: React.FC = () => {
-    return (
-        <section
-            id="hero"
-            className="relative flex items-center justify-center pb-0 pt-32 md:pt-40 px-5"
+export default function Hero() {
+  return (
+    <div className="flex flex-col items-center justify-center text-center max-w-6xl mx-auto min-h-[calc(100vh-80px)] pt-16">
+      <motion.h1 
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-[#1D3557]"
+      >
+        Turn Customer Feedback Into Actionable Insights
+      </motion.h1>
+      <motion.p 
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        className="text-xl mb-8 text-gray-600 max-w-3xl"
+      >
+        QuickFeel helps you analyze feedback instantly, using AI to categorize sentiment and emotion, streamlining decision-making.
+      </motion.p>
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={scaleUp}
+        className="flex gap-4 mb-16"
+      >
+        <Button 
+          size="lg"
+          className="bg-[#2A9D8F] hover:bg-[#238579] text-white text-lg px-8 py-6 transition-transform hover:scale-105 duration-200"
         >
-            <div className="absolute left-0 top-0 bottom-0 -z-10 w-full">
-                <div className="absolute inset-0 h-full w-full bg-hero-background bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]">
-                </div>
-            </div>
+          Get Started Now – See Results in Minutes
+        </Button>
+      </motion.div>
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={scaleUp}
+        className="w-full max-w-3xl rounded-lg overflow-hidden shadow-2xl hover:shadow-xl transition-shadow duration-300"
+      >
+        <Image
+          src="/quick-feel-dashboard.jpg"
+          alt="QuickFeel Dashboard"
+          width={600}
+          height={300}
+          className="w-full h-auto"
+        />
+      </motion.div>
+    </div>
+  )
+}
 
-            <div className="absolute left-0 right-0 bottom-0 backdrop-blur-[2px] h-40 bg-gradient-to-b from-transparent via-[rgba(233,238,255,0.5)] to-[rgba(202,208,230,0.5)]">
-            </div>
-
-            <div className="text-center">
-                <h1 className="text-4xl md:text-6xl md:leading-tight font-bold text-foreground max-w-lg md:max-w-2xl mx-auto">
-                    Plan, Explore, and Navigate Effortlessly with Our <span className='text-[var(--primary)] underline'>AI-Powered Chat Assistant</span>
-                </h1>
-                <p className="mt-4 text-foreground max-w-lg mx-auto">{heroDetails.subheading}</p>
-                <div className="mt-6 sm:flex-row items-center sm:gap-4 w-fit mx-auto">
-                    <JoinWaitlistButton text="Transform the way you travel!" />
-                    <p className='mt-2 text-[0.9rem]'>Join the exclusive waitlist today and be the first to experience seamless, AI-powered travel assistance</p>
-                </div>
-                <Image
-                    src={heroDetails.centerImageSrc}
-                    width={384}
-                    height={340}
-                    quality={100}
-                    sizes="(max-width: 768px) 100vw, 384px"
-                    priority={true}
-                    unoptimized={true}
-                    alt="app mockup"
-                    className='relative mt-12 md:mt-16 mx-auto z-10'
-                />
-            </div>
-        </section>
-    );
-};
-
-export default Hero;
