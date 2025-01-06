@@ -1,4 +1,4 @@
-import { cn, generateUUID } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { ClockRewind, CopyIcon, PlayIcon, RedoIcon, UndoIcon } from './icons';
 import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
@@ -55,7 +55,7 @@ export function RunCodeButton({
   );
 
   const loadAndRunPython = useCallback(async () => {
-    const runId = generateUUID();
+    const runId = "111";
 
     setConsoleOutputs((consoleOutputs) => [
       ...consoleOutputs,
