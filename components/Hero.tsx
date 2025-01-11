@@ -3,52 +3,54 @@
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import { fadeIn, scaleUp } from './animations'
+import { useRouter } from 'next/navigation'
 
 export default function Hero() {
+  const router = useRouter()
+
   return (
-    <div className="flex flex-col items-center justify-center text-center max-w-6xl mx-auto min-h-[calc(100vh-80px)] pt-16">
-      <motion.h1 
-        initial="hidden"
-        animate="visible"
-        variants={fadeIn}
-        className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-[#1D3557]"
+    <div className="flex flex-col items-center justify-center text-center max-w-6xl mx-auto min-h-[calc(100vh-80px)] pt-16 px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="space-y-6"
       >
-        Turn Customer Feedback Into Actionable Insights
-      </motion.h1>
-      <motion.p 
-        initial="hidden"
-        animate="visible"
-        variants={fadeIn}
-        className="text-xl mb-8 text-gray-600 max-w-3xl"
-      >
-        QuickFeel helps you analyze feedback instantly, using AI to categorize sentiment and emotion, streamlining decision-making.
-      </motion.p>
-      <motion.div 
-        initial="hidden"
-        animate="visible"
-        variants={scaleUp}
-        className="flex gap-4 mb-16"
-      >
-        <Button 
-          size="lg"
-          className="bg-[#2A9D8F] hover:bg-[#238579] text-white text-lg px-8 py-6 transition-transform hover:scale-105 duration-200"
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#1D3557] leading-tight">
+          Transform Customer Feedback into <span className="text-[#2A9D8F]">Actionable Insights</span> with AI
+        </h1>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          Leverage AI to analyze feedback, uncover trends, and make smarter decisions—all in minutes.
+        </p>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="pt-4"
         >
-          Get Started Now – See Results in Minutes
-        </Button>
+          <Button 
+            size="lg"
+            className="bg-[#2A9D8F] hover:bg-[#238579] text-white text-lg px-8 py-6"
+            onClick={() => router.push('/login')}
+          >
+            Try QuickFeel Now
+          </Button>
+        </motion.div>
       </motion.div>
-      <motion.div 
-        initial="hidden"
-        animate="visible"
-        variants={scaleUp}
-        className="w-full max-w-3xl rounded-lg overflow-hidden shadow-2xl hover:shadow-xl transition-shadow duration-300"
+
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="mt-16 relative w-full max-w-4xl"
       >
+        <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
         <Image
-          src="/quick-feel-dashboard.jpg"
-          alt="QuickFeel Dashboard"
-          width={600}
-          height={300}
-          className="w-full h-auto"
+          src="/dashboard-preview.png"
+          alt="QuickFeel AI Dashboard showing sentiment analysis and customer feedback trends"
+          width={1200}
+          height={675}
+          className="w-full h-auto rounded-xl shadow-2xl border border-gray-200"
+          priority
         />
       </motion.div>
     </div>

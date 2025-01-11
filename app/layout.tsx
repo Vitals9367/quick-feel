@@ -1,65 +1,33 @@
-import type { Metadata } from 'next';
-import { Toaster } from 'sonner';
-import { GoogleAnalytics } from '@next/third-parties/google';
-import { Source_Sans_3, Manrope } from "next/font/google";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
+import './globals.css'
+import { metadata as siteMetadata, jsonLd } from '@/data/metadata'
 
-import { siteDetails } from '@/data/siteDetails';
-import './globals.css';
+const inter = Inter({ subsets: ['latin'] })
 
-const manrope = Manrope({ subsets: ['latin'] });
-const sourceSans = Source_Sans_3({ subsets: ['latin'] });
+export const metadata: Metadata = siteMetadata
 
-export const metadata: Metadata = {
-  title: siteDetails.metadata.title,
-  description: siteDetails.metadata.description,
-  openGraph: {
-    title: siteDetails.metadata.title,
-    description: siteDetails.metadata.description,
-    url: siteDetails.siteUrl,
-    type: 'website',
-    images: [
-      {
-        url: '/images/og.jpg',
-        width: 1200,
-        height: 675,
-        alt: siteDetails.siteName,
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteDetails.metadata.title,
-    description: siteDetails.metadata.description,
-    images: ['/images/og.jpg'],
-  },
-};
-
-export const viewport = {
-  maximumScale: 1, // Disable auto-zoom on mobile Safari
-};
-
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html
-      lang="en"
-      // `next-themes` injects an extra classname to the body element to avoid
-      // visual flicker before hydration. Hence the `suppressHydrationWarning`
-      // prop is necessary to avoid the React hydration mismatch warning.
-      // https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
-      suppressHydrationWarning
-    >
+    <html lang="en">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd)
+          }}
+        />
       </head>
-      <body className={`${manrope.className} ${sourceSans.className} antialiased`}>
-          <Toaster position="top-center" />
-          {siteDetails.googleAnalyticsId && <GoogleAnalytics gaId={siteDetails.googleAnalyticsId} />}
-          {children}
-        </body>
+      <body className={inter.className}>
+        {children}
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
+      </body>
     </html>
-  );
+  )
 }
+

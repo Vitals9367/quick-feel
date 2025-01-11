@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { staggerChildren, fadeIn, slideInFromLeft } from './animations'
-import Container from './Container'
 
 const plans = [
   {
@@ -52,8 +51,8 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section className="w-full py-24" id="pricing">
-      <Container>
+    <section className="w-full py-24">
+      <div className="container px-4 md:px-6">
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -130,7 +129,7 @@ export default function Pricing() {
             </motion.div>
           ))}
         </motion.div>
-      </Container>
+      </div>
     </section>
   )
 }

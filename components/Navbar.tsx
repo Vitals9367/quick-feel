@@ -3,9 +3,18 @@
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { ChevronDown, BookOpen, HelpCircle, FileText } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export default function Navbar() {
-  // Function to handle smooth scroll to sections
+  const router = useRouter()
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -34,7 +43,6 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           <button 
             onClick={() => scrollToSection('features')}
@@ -61,13 +69,33 @@ export default function Navbar() {
             Testimonials
           </button>
           
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-600 hover:text-[#2A9D8F] transition-colors">
+              <span>Resources</span>
+              <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem className="flex items-center">
+                <BookOpen className="mr-2 h-4 w-4" />
+                <span>Documentation</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex items-center">
+                <HelpCircle className="mr-2 h-4 w-4" />
+                <span>FAQs</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex items-center">
+                <FileText className="mr-2 h-4 w-4" />
+                <span>Blog</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
-        {/* CTA Buttons */}
         <div className="flex items-center space-x-4">
           <Button 
             variant="ghost" 
             className="hidden sm:inline-flex hover:text-[#2A9D8F] transition-colors"
+            onClick={() => router.push('/login')}
           >
             Sign In
           </Button>
@@ -75,7 +103,10 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button className="bg-[#2A9D8F] hover:bg-[#238579] text-white">
+            <Button 
+              className="bg-[#2A9D8F] hover:bg-[#238579] text-white"
+              onClick={() => router.push('/login')}
+            >
               Get Started
             </Button>
           </motion.div>

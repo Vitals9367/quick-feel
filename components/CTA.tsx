@@ -3,18 +3,22 @@
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
 import { motion } from "framer-motion"
-import { fadeIn, scaleUp } from './animations'
-import Container from "./Container"
+import { useRouter } from 'next/navigation'
 
 export default function CTA() {
+  const router = useRouter()
+
   return (
     <section className="w-full py-24 bg-[#1D3557] text-white overflow-hidden">
-      <Container>
+      <div className="container px-4 md:px-6">
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeIn}
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 }
+          }}
           className="flex flex-col items-center space-y-8 text-center"
         >
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -31,6 +35,7 @@ export default function CTA() {
               <Button 
                 size="lg" 
                 className="bg-[#2A9D8F] hover:bg-[#238579] text-white text-lg px-8 py-6 relative after:absolute after:inset-0 after:rounded-md after:border-2 after:border-[#2A9D8F] after:animate-pulse after:opacity-70"
+                onClick={() => router.push('/login')}
               >
                 Start Your Journey Now – Get Actionable Insights in Minutes
               </Button>
@@ -39,11 +44,22 @@ export default function CTA() {
               Join hundreds of businesses already using QuickFeel to transform feedback into results.
             </p>
             <motion.div 
-              variants={scaleUp}
+              variants={{
+                hidden: { opacity: 0, scale: 0.8 },
+                visible: { 
+                  opacity: 1, 
+                  scale: 1,
+                  transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15
+                  }
+                }
+              }}
               className="w-full max-w-2xl rounded-lg overflow-hidden shadow-[0_0_30px_rgba(42,157,143,0.2)] mt-8"
             >
               <Image
-                src="/quick-feel-dashboard2.jpg"
+                src="/placeholder.svg?height=250&width=500"
                 alt="QuickFeel Analytics Dashboard"
                 width={500}
                 height={250}
@@ -52,7 +68,7 @@ export default function CTA() {
             </motion.div>
           </div>
         </motion.div>
-      </Container>
+      </div>
     </section>
   )
 }

@@ -1,23 +1,69 @@
-import { ITestimonial } from "@/types";
-import { siteDetails } from "./siteDetails";
+export interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+  image: string;
+  stats?: {
+    label: string;
+    value: string;
+  }[];
+}
 
-export const testimonials: ITestimonial[] = [
+export const testimonials: Testimonial[] = [
+  {
+    quote: "QuickFeel has transformed the way we analyze customer feedback. What used to take us days now takes minutes.",
+    author: "John Smith",
+    role: "Marketing Manager",
+    company: "TechCorp",
+    image: "/testimonials/john.jpg",
+    stats: [
+      {
+        label: "Time Saved",
+        value: "85%"
+      },
+      {
+        label: "Customer Satisfaction",
+        value: "+40%"
+      }
+    ]
+  },
+  {
+    quote: "QuickFeel has saved our team hours of work each week. We can now react to feedback faster and with greater precision.",
+    author: "Emily Chen",
+    role: "Customer Success Lead",
+    company: "GrowthStart",
+    image: "/testimonials/emily.jpg",
+    stats: [
+      {
+        label: "Weekly Hours Saved",
+        value: "20+"
+      },
+      {
+        label: "Response Time",
+        value: "-65%"
+      }
+    ]
+  }
+]
+
+export const socialProof = {
+  customers: "1,000+",
+  feedback: "1M+",
+  satisfaction: "98%",
+  companies: [
     {
-        name: 'John Smith',
-        role: 'CEO at Company',
-        message: `${siteDetails.siteName}'s AI-driven insights have transformed how we approach financial planning for our clients. It's an invaluable resource in the modern financial landscape.`,
-        avatar: '/images/testimonial-1.webp',
+      name: "TechCorp",
+      logo: "/logos/techcorp.svg"
     },
     {
-        name: 'Jane Doe',
-        role: 'CTO at Startup',
-        message: `As a CTO, I'm impressed by ${siteDetails.siteName}'s robust security measures and seamless integrations. It's rare to find an app that balances user-friendliness with such advanced technology.`,
-        avatar: '/images/testimonial-2.webp',
+      name: "GrowthStart",
+      logo: "/logos/growthstart.svg"
     },
     {
-        name: 'Emily Johnson',
-        role: 'Product Manager',
-        message: `${siteDetails.siteName} is revolutionizing personal finance management. Its intuitive design and powerful features make it an indispensable tool for anyone serious about financial growth.`,
-        avatar: '/images/testimonial-3.webp',
-    },
-];
+      name: "InnovateCo",
+      logo: "/logos/innovateco.svg"
+    }
+  ]
+}
+

@@ -1,79 +1,102 @@
+'use client'
+
 import Image from 'next/image'
-import Container from './Container'
+import { motion } from "framer-motion"
 
 const testimonials = [
   {
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec ultrices orci. Vivamus ante arcu, hendrerit.",
-    author: "John",
-    handle: "@johndoe",
-    avatar: "/placeholder.svg?height=40&width=40"
+    quote: "QuickFeel helped us identify trends we missed, saving us hours of manual work!",
+    author: "Sarah Johnson",
+    role: "Product Manager",
+    company: "TechCorp",
+    avatar: "/avatars/sarah.jpg"
   },
   {
-    content: "Curabitur at quam eget eros semper euismod vitae at neque. Ut ultrices ut tortor et feugiat. Etiam vitae nisi eleifend, blandit ligula quis, sodales neque.",
-    author: "Bob",
-    handle: "@thisisbob",
-    avatar: "/placeholder.svg?height=40&width=40"
-  },
-  {
-    content: "Vivamus dignissim porta orci, finibus tempus risus consectetur dapibus. Donec quis ornare elit. Curabitur tempor.",
-    author: "Micheal",
-    handle: "@michael",
-    avatar: "/placeholder.svg?height=40&width=40"
-  },
-  {
-    content: "Mauris tincidunt porttitor risus, et posuere erat malesuada eu. Praesent volutpat ut ipsum ac congue. Vestibulum nec orci ornare, imperdiet metus vel.",
-    author: "Max",
-    handle: "@maxcook",
-    avatar: "/placeholder.svg?height=40&width=40"
-  },
-  {
-    content: "Suspendisse a velit elit. Curabitur augue libero, vulputate sed dui id, sodales venenatis sem. Suspendisse dapibus neque eu justo volutpat gravida.",
-    author: "Emily",
-    handle: "@emilysmith",
-    avatar: "/placeholder.svg?height=40&width=40"
-  },
-  {
-    content: "Nullam non lorem vitae risus volutpat dictum non sed magna. Aliquam in venenatis quam. Morbi feugiat tristique leo, vel ultrices dolor varius non.",
-    author: "Linda",
-    handle: "@thisislinda",
-    avatar: "/placeholder.svg?height=40&width=40"
+    quote: "Our customer satisfaction scores improved after using QuickFeel's insights.",
+    author: "Mark Thompson",
+    role: "CEO",
+    company: "XYZ Co",
+    avatar: "/avatars/mark.jpg"
   }
+]
+
+const companyLogos = [
+  { name: "TechCorp", logo: "/logos/techcorp.svg" },
+  { name: "XYZ Co", logo: "/logos/xyz.svg" },
+  { name: "InnovateInc", logo: "/logos/innovate.svg" }
 ]
 
 export default function Testimonials() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-white" id="testimonials">
-      <Container>
-        <div className="text-center space-y-4">
-          <div className="text-[#2A9D8F] text-sm font-medium">TESTIMONIALS</div>
+    <section className="w-full py-24 bg-gray-50">
+      <div className="container px-4 md:px-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center space-y-4"
+        >
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-[#1D3557]">
-            What our users say
+            Trusted by Industry Leaders
           </h2>
-          <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            What developers and founders of top companies around the internet are saying about QuickFeel.
+          <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl/relaxed">
+            See how companies are transforming their feedback process with QuickFeel
           </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        </motion.div>
+
+        <div className="grid grid-cols-1 gap-8 mt-16 md:grid-cols-2">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
-              <p className="text-gray-600 mb-4">{testimonial.content}</p>
-              <div className="flex items-center">
-                <Image
-                  src={testimonial.avatar}
-                  alt={testimonial.author}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-                <div className="ml-3">
-                  <div className="font-semibold text-[#1D3557]">{testimonial.author}</div>
-                  <div className="text-sm text-gray-500">{testimonial.handle}</div>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="relative group"
+            >
+              <div className="absolute inset-0 bg-white rounded-2xl shadow-lg transform group-hover:scale-[1.02] transition-transform duration-300" />
+              <div className="relative p-8">
+                <div className="flex items-center space-x-4">
+                  <Image
+                    src={testimonial.avatar}
+                    alt={testimonial.author}
+                    width={56}
+                    height={56}
+                    className="rounded-full"
+                  />
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#1D3557]">{testimonial.author}</h3>
+                    <p className="text-sm text-gray-600">{testimonial.role} at {testimonial.company}</p>
+                  </div>
                 </div>
+                <blockquote className="mt-6 text-lg text-gray-600 italic">
+                  "{testimonial.quote}"
+                </blockquote>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </Container>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16 pt-8 border-t border-gray-200"
+        >
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {companyLogos.map((company, index) => (
+              <Image
+                key={index}
+                src={company.logo}
+                alt={company.name}
+                width={120}
+                height={40}
+                className="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300"
+              />
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </section>
   )
 }

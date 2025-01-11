@@ -1,37 +1,32 @@
-import { IFAQ } from "@/types";
-import { siteDetails } from "./siteDetails";
+export interface FAQ {
+  question: string;
+  answer: string;
+}
 
-export const faqs: IFAQ[] = [
-    {
-        question: `Is ${siteDetails.siteName} secure?`,
-        answer: `Yes, ${siteDetails.siteName} prioritizes the security of your data. We use advanced encryption technology to protect your personal and travel details, ensuring your information remains private and secure.`,
-    },
-    {
-        question: `Can I use ${siteDetails.siteName} on multiple devices?`,
-        answer: `Absolutely! ${siteDetails.siteName} is designed to work seamlessly across all devices, including smartphones, tablets, and desktops. Your travel plans will sync automatically, so you can access them wherever you are.`,
-    },
-    {
-        question: `How does ${siteDetails.siteName} create personalized travel plans?`,
-        answer: `${siteDetails.siteName} generates personalized travel itineraries by analyzing your preferences, budget, and available time. It suggests tailored destinations, activities, and experiences that match your unique travel style.`,
-    },
-    {
-        question: 'Can I access maps and guides offline?',
-        answer: 'Yes! You can download your itineraries, maps, and travel guides to your device. This allows you to access important travel information even when you’re in areas without internet access.',
-    },
-    {
-        question: `Do I need an internet connection to use ${siteDetails.siteName}?`,
-        answer: 'While certain features like real-time chat guidance and live updates require an internet connection, you can still access downloaded maps, itineraries, and other offline tools without being online.',
-    },
-    {
-        question: 'How does the chat feature work?',
-        answer: `${siteDetails.siteName} provides a real-time chat feature that acts as your personal travel assistant. You’ll receive helpful recommendations, directions, and travel tips directly within the chat interface to assist you during your journey.`,
-    },
-    {
-        question: 'What if I need help while traveling?',
-        answer: `${siteDetails.siteName} offers real-time travel assistance, providing instant support for questions like directions, local recommendations, and travel advice. Simply send a message, and we'll be there to help.`,
-    },
-    {
-        question: 'Is customer support available?',
-        answer: 'Yes, we offer customer support via chat or email. Our team is ready to assist you with any inquiries or issues you may encounter during your trip. Your satisfaction is our priority.',
-    }
-];
+export const faqs: FAQ[] = [
+  {
+    question: "How does QuickFeel work?",
+    answer: "QuickFeel uses AI to process your customer feedback and generate reports that highlight trends, sentiment, and key insights. Simply connect your feedback sources, and our AI will automatically analyze and categorize the feedback, providing you with actionable insights in minutes."
+  },
+  {
+    question: "Can I integrate QuickFeel with my existing platforms?",
+    answer: "Yes! QuickFeel integrates seamlessly with popular survey tools, social media platforms, and CRM systems. We support integrations with tools like Typeform, SurveyMonkey, Zendesk, and more. Our API also allows for custom integrations if needed."
+  },
+  {
+    question: "What kind of reports can I generate?",
+    answer: "You can generate sentiment analysis reports, keyword trend reports, and customer satisfaction trend analysis. Our reports help you understand sentiment changes over time, identify common themes in feedback, and track specific metrics that matter to your business."
+  },
+  {
+    question: "What if I need more than 10,000 analyses per month?",
+    answer: "For larger businesses, we offer custom enterprise solutions with unlimited analyses, dedicated support, and custom features. Please contact our sales team to discuss your specific needs and get a customized quote."
+  },
+  {
+    question: "Is my data secure?",
+    answer: "Yes, we take data security seriously. QuickFeel uses enterprise-grade encryption, complies with GDPR and CCPA requirements, and follows industry best practices for data protection. Your data is stored securely and never shared with third parties."
+  },
+  {
+    question: "Do you offer a free trial?",
+    answer: "Yes, we offer a 14-day free trial on our Basic and Pro plans. You can try all features risk-free and upgrade or cancel at any time. No credit card is required to start your trial."
+  }
+]
+
