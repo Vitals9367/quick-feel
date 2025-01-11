@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { getAllPosts, getAllCategories } from '@/lib/blog'
 import { PostCard } from '@/components/blog/post-card'
 import { Badge } from "@/components/ui/badge"
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Blog | QuickFeel',
