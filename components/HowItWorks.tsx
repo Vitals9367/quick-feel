@@ -29,7 +29,7 @@ export default function HowItWorks() {
             Simple three-step process
           </h2>
           <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            We've made it easy to get started with QuickFeel. Here's how it works.
+            We&apos;ve made it easy to get started with QuickFeel. Here&apos;s how it works.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-3 md:gap-8">
