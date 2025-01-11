@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@hookform/resolvers": "latest",
     "@next/third-parties": "latest",
     "@radix-ui/react-accordion": "^1.2.2",
@@ -43,6 +44,7 @@
     "@tanstack/react-table": "latest",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
+    "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.4",
     "date-fns": "latest",
@@ -59,10 +61,12 @@
     "react-day-picker": "latest",
     "react-dom": "^18",
     "react-hook-form": "latest",
+    "react-icons": "^5.4.0",
     "react-resizable-panels": "^2.1.7",
     "reading-time": "latest",
     "recharts": "^2.15.0",
     "rehype-stringify": "latest",
+    "remark": "^15.0.1",
     "remark-gfm": "latest",
     "remark-parse": "latest",
     "remark-rehype": "latest",
