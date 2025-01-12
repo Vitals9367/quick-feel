@@ -1,8 +1,8 @@
+import { MobileNav } from "@/components/dashboard/mobile-nav";
 import { DashboardNav } from "@/components/dashboard/nav";
 import { UserNav } from "@/components/dashboard/user-nav";
-import { MobileNav } from "@/components/dashboard/mobile-nav";
-import { SidebarProvider } from "@/components/ui/sidebar";
 import { FeedbackBubble } from "@/components/feedback-bubble";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function DashboardLayout({
   children,

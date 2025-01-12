@@ -1,7 +1,7 @@
 "use client";
 
 import { User } from "@supabase/supabase-js";
-import type { Tables } from "@/types_db";
+import type { Json, Tables } from "@/types_db";
 import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import { getStripe } from "@/utils/stripe/client";
@@ -10,7 +10,8 @@ import { getErrorRedirect } from "@/utils/helpers";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { staggerChildren, fadeIn } from "./animations";
+import { staggerChildren, fadeIn, slideInFromLeft } from "./animations";
+import { Check } from "lucide-react";
 
 type Subscription = Tables<"subscriptions">;
 type Product = Tables<"products">;
@@ -108,10 +109,12 @@ export default function Pricing({ user, products, subscription }: Props) {
           variants={staggerChildren}
           className="grid grid-cols-1 gap-6 mt-12 md:grid-cols-3 md:gap-8"
         >
-          {products.map((product, index) => {
-            console.log(product);
-            const price = product?.prices?.find(
-              (price) => price.interval === billingInterval,
+          {products
+          .sort((a, b) => (a.prices[0]?.unit_amount ?? 0) - (b.prices[0]?.unit_amount ?? 0))
+          .map((product, index) => {
+
+            const price = product.prices?.find(
+              (price) => price?.interval === billingInterval,
             );
 
             if (!price) return null;
@@ -122,7 +125,7 @@ export default function Pricing({ user, products, subscription }: Props) {
               minimumFractionDigits: 0,
             }).format((price?.unit_amount || 0) / 100);
 
-            const popular = index === 1;
+            const most_popular = (product.metadata as { [key: string]: Json | undefined })?.most_popular ?? null;
 
             return (
               <motion.div
@@ -131,10 +134,10 @@ export default function Pricing({ user, products, subscription }: Props) {
                 whileHover={{ y: -5 }}
                 className={cn(
                   "relative rounded-2xl bg-white p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl",
-                  popular && "border-2 border-[#2A9D8F]",
+                  most_popular && "border-2 border-[#2A9D8F]",
                 )}
               >
-                {popular && (
+                {most_popular && (
                   <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -157,7 +160,9 @@ export default function Pricing({ user, products, subscription }: Props) {
                   variants={staggerChildren}
                   className="mt-8 space-y-4"
                 >
-                  {/* {plan.features.map((feature) => (
+                {Array.isArray(product.features) && product.features
+                  .filter((feature): feature is string => feature !== null)
+                  .map((feature) => (
                   <motion.li 
                     key={feature}
                     variants={slideInFromLeft}
@@ -168,7 +173,7 @@ export default function Pricing({ user, products, subscription }: Props) {
                     </div>
                     <span className="text-gray-700">{feature}</span>
                   </motion.li>
-                ))} */}
+                ))}
                 </motion.ul>
                 <Button className="w-full mt-8 bg-[#2A9D8F] hover:bg-[#238579] text-white transition-transform hover:scale-105 duration-200">
                   Start for {priceString}/month
