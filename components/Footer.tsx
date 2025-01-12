@@ -7,6 +7,7 @@ import { Mail } from 'lucide-react'
 import { motion } from "framer-motion"
 import { fadeIn } from './animations'
 import { siteConfig } from '@/data/site-config'
+import Logo from './logo'
 
 export default function Footer() {
   // Function to handle smooth scroll to sections
@@ -30,7 +31,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
+              <Logo />
               <span className="text-xl font-bold">QuickFeel</span>
             </div>
             <p className="text-gray-600 max-w-sm">

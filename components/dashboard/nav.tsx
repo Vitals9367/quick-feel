@@ -26,6 +26,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import type { Project } from "@/types/dashboard"
 import Image from 'next/image'
 import { siteConfig } from '@/data/site-config'
+import Logo from '../logo'
 
 // Mock projects data
 const mockProjects: Project[] = [
@@ -80,7 +81,7 @@ export function DashboardNav() {
     <Sidebar>
       <SidebarHeader>
         <div className="flex items-center gap-2 px-4 py-2">
-          <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
+          <Logo />
           <span className="text-xl font-bold">QuickFeel</span>
         </div>
         <div className="px-4 py-2">

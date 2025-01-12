@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { ChevronDown, BookOpen, HelpCircle, FileText } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { siteConfig } from '@/data/site-config'
+import Logo from './logo'
 
 export default function Navbar() {
   const router = useRouter()
@@ -29,7 +30,7 @@ export default function Navbar() {
           href="/" 
           className="flex items-center space-x-2 group"
         >
-          <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
+          <Logo />
           <span className="text-xl font-bold text-[#1D3557] group-hover:text-[#2A9D8F] transition-colors">
             QuickFeel
           </span>

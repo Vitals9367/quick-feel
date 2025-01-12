@@ -1,4 +1,5 @@
 import LoginForm from '@/components/auth/LoginForm'
+import Logo from '@/components/logo'
 import { siteConfig } from '@/data/site-config'
 import { Metadata } from 'next'
 import Image from 'next/image'
@@ -13,7 +14,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
+          <Logo />
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-[#1D3557]">
           Welcome back
