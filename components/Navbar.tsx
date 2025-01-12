@@ -3,14 +3,10 @@
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import Image from 'next/image'
 import { ChevronDown, BookOpen, HelpCircle, FileText } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { siteConfig } from '@/data/site-config'
 
 export default function Navbar() {
   const router = useRouter()
@@ -33,11 +29,7 @@ export default function Navbar() {
           href="/" 
           className="flex items-center space-x-2 group"
         >
-          <motion.div 
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.5 }}
-            className="w-8 h-8 bg-[#2A9D8F] rounded-full"
-          />
+          <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
           <span className="text-xl font-bold text-[#1D3557] group-hover:text-[#2A9D8F] transition-colors">
             QuickFeel
           </span>
@@ -51,12 +43,6 @@ export default function Navbar() {
             Features
           </button>
           <button 
-            onClick={() => scrollToSection('pricing')}
-            className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
-          >
-            Pricing
-          </button>
-          <button 
             onClick={() => scrollToSection('how-it-works')}
             className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
           >
@@ -68,27 +54,12 @@ export default function Navbar() {
           >
             Testimonials
           </button>
-          
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-600 hover:text-[#2A9D8F] transition-colors">
-              <span>Resources</span>
-              <ChevronDown className="h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem className="flex items-center">
-                <BookOpen className="mr-2 h-4 w-4" />
-                <span>Documentation</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="flex items-center">
-                <HelpCircle className="mr-2 h-4 w-4" />
-                <span>FAQs</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="flex items-center">
-                <FileText className="mr-2 h-4 w-4" />
-                <span>Blog</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <button 
+            onClick={() => scrollToSection('pricing')}
+            className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
+          >
+            Pricing
+          </button>
         </div>
 
         <div className="flex items-center space-x-4">

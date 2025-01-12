@@ -1,5 +1,8 @@
 export const siteConfig = {
   name: "QuickFeel",
+  logo: "/logo.svg",
+  url: "",
+  ogImage: "",
   tagline: "Stop Wasting Time Analyzing Feedback – Let AI Do It for You",
   description: "QuickFeel transforms customer feedback into actionable insights in minutes, so you can focus on growing your business.",
   company: {

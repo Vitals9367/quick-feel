@@ -1,10 +1,12 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { Mail } from 'lucide-react'
 import { motion } from "framer-motion"
 import { fadeIn } from './animations'
+import { siteConfig } from '@/data/site-config'
 
 export default function Footer() {
   // Function to handle smooth scroll to sections
@@ -28,7 +30,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-[#2A9D8F] rounded-full" />
+              <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
               <span className="text-xl font-bold">QuickFeel</span>
             </div>
             <p className="text-gray-600 max-w-sm">
@@ -62,16 +64,16 @@ export default function Footer() {
                 Pricing
               </button>
               <Link 
-                href="/contact"
-                className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
-              >
-                Contact Us
-              </Link>
-              <Link 
                 href="/privacy"
                 className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
               >
                 Privacy Policy
+              </Link>
+              <Link 
+                href="/terms"
+                className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
+              >
+                Terms of Service
               </Link>
             </nav>
 
@@ -83,6 +85,7 @@ export default function Footer() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="inline-block"
               >
                 <Button 
                   variant="outline" 

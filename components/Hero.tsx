@@ -9,7 +9,9 @@ export default function Hero() {
   const router = useRouter()
 
   return (
-    <div className="flex flex-col items-center justify-center text-center max-w-6xl mx-auto min-h-[calc(100vh-80px)] pt-16 px-4">
+    <div 
+      id="hero"
+      className="flex flex-col items-center justify-center text-center max-w-6xl mx-auto min-h-[calc(100vh-80px)] pt-16 px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

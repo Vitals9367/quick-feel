@@ -1,6 +1,8 @@
 import SignUpForm from '@/components/auth/SignUpForm'
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
+import { siteConfig } from '@/data/site-config'
 
 export const metadata: Metadata = {
   title: 'Sign Up | QuickFeel',
@@ -12,11 +14,11 @@ export default function SignUpPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Link href="/" className="flex justify-center items-center gap-2">
-          <div className="w-12 h-12 bg-[#2A9D8F] rounded-full" />
+          <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
           <span className="text-2xl font-bold text-[#1D3557]">QuickFeel</span>
         </Link>
         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-[#1D3557]">
-          Start your free trial
+          Create your account
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           Already have an account?{' '}

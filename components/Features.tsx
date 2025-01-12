@@ -5,7 +5,9 @@ import { features } from '@/data/features'
 
 export default function Features() {
   return (
-    <section className="w-full py-24 bg-gradient-to-b from-white to-gray-50">
+    <section 
+      id="features"
+      className="w-full py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="container px-4 md:px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

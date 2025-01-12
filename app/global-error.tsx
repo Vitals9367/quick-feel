@@ -1,10 +1,14 @@
 'use client'
- 
-import { useEffect } from 'react'
+
+import * as Sentry from "@sentry/nextjs";
+import Error from "next/error";
+import { useEffect } from "react";
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Home, RefreshCcw } from 'lucide-react'
- 
+import Image from "next/image";
+import { siteConfig } from "@/data/site-config";
+
 export default function GlobalError({
   error,
   reset,
@@ -13,9 +17,8 @@ export default function GlobalError({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
-    console.error(error)
-  }, [error])
+    Sentry.captureException(error);
+  }, [error]);
  
   return (
     <html>
@@ -24,7 +27,7 @@ export default function GlobalError({
           <div className="container px-4 md:px-6 flex flex-col items-center text-center space-y-4">
             {/* Logo */}
             <div className="flex items-center space-x-2">
-              <div className="h-12 w-12 rounded-full bg-[#2A9D8F]" />
+            <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
               <span className="text-2xl font-bold text-[#1D3557]">QuickFeel</span>
             </div>
 

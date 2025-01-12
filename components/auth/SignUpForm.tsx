@@ -6,18 +6,12 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
 import { useRouter } from 'next/navigation'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form"
 import * as z from "zod"
+import { signInWithOAuth, signUpWithEmail } from '@/utils/auth-helpers/client'
+import loglevel from 'loglevel'
 
 const signUpSchema = z.object({
   email: z.string().email({
@@ -36,8 +30,6 @@ type SignUpValues = z.infer<typeof signUpSchema>
 
 export default function SignUpForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)
-  const router = useRouter()
 
   const form = useForm<SignUpValues>({
     resolver: zodResolver(signUpSchema),
@@ -50,51 +42,37 @@ export default function SignUpForm() {
 
   async function onSubmit(data: SignUpValues) {
     setIsLoading(true)
-
     try {
-      // TODO: Implement actual signup logic
-      console.log(data)
-      setTimeout(() => {
-        setIsLoading(false)
-        router.push('/dashboard')
-      }, 1000)
+      await signUpWithEmail(data.email, data.password)
     } catch (error) {
+      loglevel.error("Failed to Sign Up...")
+    } finally {
       setIsLoading(false)
-      // Handle error
-    }
-  }
-
-  async function onGoogleSignUp() {
-    setIsGoogleLoading(true)
-
-    try {
-      // TODO: Implement actual Google signup logic
-      setTimeout(() => {
-        setIsGoogleLoading(false)
-        router.push('/dashboard')
-      }, 1000)
-    } catch (error) {
-      setIsGoogleLoading(false)
-      // Handle error
     }
   }
 
   return (
     <div className="space-y-6">
       <div className="grid gap-2">
-        <div className="grid gap-1">
+        <div className="grid gap-2">
           <Button
             variant="outline"
-            onClick={onGoogleSignUp}
-            disabled={isLoading || isGoogleLoading}
+            onClick={() => signInWithOAuth("google")}
+            disabled={isLoading}
             className="w-full"
           >
-            {isGoogleLoading ? (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.google className="mr-2 h-4 w-4" />
-            )}{" "}
+            <Icons.google className="mr-2 h-4 w-4" />
+            {" "}
             Sign up with Google
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => signInWithOAuth("github")}
+            disabled={isLoading}
+            className="w-full"
+          >
+            <Icons.github className="mr-2 h-4 w-4" />
+            Sign up with GitHub
           </Button>
         </div>
 
@@ -110,7 +88,7 @@ export default function SignUpForm() {
         </div>
       </div>
 
-      <Form {...form}>
+      <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
             control={form.control}
@@ -185,7 +163,7 @@ export default function SignUpForm() {
             Create account
           </Button>
         </form>
-      </Form>
+      </FormProvider>
     </div>
   )
 }

@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Home, ArrowLeft } from 'lucide-react'
+import Image from 'next/image'
+import { siteConfig } from '@/data/site-config'
 
 export default function NotFound() {
   return (
@@ -10,7 +12,7 @@ export default function NotFound() {
       <div className="container px-4 md:px-6 flex flex-col items-center text-center space-y-4">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <div className="h-12 w-12 rounded-full bg-[#2A9D8F]" />
+          <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
           <span className="text-2xl font-bold text-[#1D3557]">QuickFeel</span>
         </div>
 
@@ -44,16 +46,6 @@ export default function NotFound() {
               <ArrowLeft className="mr-2 h-4 w-4" />
               Go Back
             </Button>
-          </div>
-        </div>
-
-        {/* Help Links */}
-        <div className="mt-8 text-sm text-gray-500">
-          <p>Need help? Try these:</p>
-          <div className="flex flex-wrap justify-center gap-4 mt-2">
-            <Link href="/help" className="text-[#2A9D8F] hover:underline">Help Center</Link>
-            <Link href="/contact" className="text-[#2A9D8F] hover:underline">Contact Support</Link>
-            <Link href="/sitemap" className="text-[#2A9D8F] hover:underline">Sitemap</Link>
           </div>
         </div>
       </div>

@@ -1,54 +1,73 @@
 'use client'
 
+import loglevel from 'loglevel'
+
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/icons"
 import { useRouter } from 'next/navigation'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { FormProvider, useForm } from 'react-hook-form'
+import { signInWithEmail, signInWithOAuth } from '@/utils/auth-helpers/client'
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
+
+const signInSchema = z.object({
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  password: z.string().min(8, {
+    message: "Password must be at least 8 characters long.",
+  })
+})
+
+type SignInValues = z.infer<typeof signInSchema>
 
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)
   const router = useRouter()
 
-  async function onSubmit(event: React.FormEvent) {
-    event.preventDefault()
+  const form = useForm<SignInValues>({
+    resolver: zodResolver(signInSchema)
+  })
+
+
+  async function onSubmit(data: SignInValues) {
     setIsLoading(true)
-
-    // TODO: Implement actual login logic
-    setTimeout(() => {
+    try {
+      await signInWithEmail(data.email, data.password)
+    } catch (error) {
+      loglevel.error("Failed to Sign In...")
+    } finally {
       setIsLoading(false)
-      router.push('/dashboard')
-    }, 1000)
-  }
-
-  async function onGoogleLogin() {
-    setIsGoogleLoading(true)
-
-    // TODO: Implement actual Google login logic
-    setTimeout(() => {
-      setIsGoogleLoading(false)
-      router.push('/dashboard')
-    }, 1000)
+    }
   }
 
   return (
     <div className="space-y-6">
       <div className="grid gap-2">
-        <div className="grid gap-1">
+        <div className="grid gap-2">
           <Button
             variant="outline"
-            onClick={onGoogleLogin}
-            disabled={isLoading || isGoogleLoading}
+            onClick={() => signInWithOAuth("google")}
+            disabled={isLoading}
             className="w-full"
           >
-            {isGoogleLoading ? (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.google className="mr-2 h-4 w-4" />
-            )}{" "}
+            <Icons.google className="mr-2 h-4 w-4" />
+            {" "}
             Continue with Google
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => signInWithOAuth("github")}
+            disabled={isLoading}
+            className="w-full"
+          >
+            <Icons.github className="mr-2 h-4 w-4" />
+            Continue with GitHub
           </Button>
         </div>
 
@@ -64,52 +83,64 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <form onSubmit={onSubmit}>
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isLoading}
-              required
+      <FormProvider {...form}>  
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="name@example.com"
+                      type="email"
+                      autoCapitalize="none"
+                      autoComplete="email"
+                      autoCorrect="off"
+                      disabled={isLoading}
+                      required
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="password">Password</Label>
-              <a
-                href="/reset-password"
-                className="text-sm font-medium text-[#2A9D8F] hover:text-[#238579]"
-              >
-                Forgot password?
-              </a>
-            </div>
-            <Input
-              id="password"
-              type="password"
-              autoCapitalize="none"
-              autoComplete="current-password"
-              disabled={isLoading}
-              required
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="password"
+                      autoCapitalize="none"
+                      autoComplete="current-password"
+                      disabled={isLoading}
+                      required
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
+            <Button
+              className="w-full bg-[#2A9D8F] hover:bg-[#238579]"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              Sign in
+            </Button>
           </div>
-          <Button
-            className="w-full bg-[#2A9D8F] hover:bg-[#238579]"
-            type="submit"
-            disabled={isLoading}
-          >
-            {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
-            Sign in
-          </Button>
-        </div>
-      </form>
+        </form>
+      </FormProvider>
     </div>
   )
 }

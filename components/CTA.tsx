@@ -10,7 +10,6 @@ export default function CTA() {
 
   return (
     <section className="w-full py-24 bg-[#1D3557] text-white overflow-hidden">
-      <div className="container px-4 md:px-6">
         <motion.div 
           initial="hidden"
           whileInView="visible"
@@ -68,7 +67,6 @@ export default function CTA() {
             </motion.div>
           </div>
         </motion.div>
-      </div>
     </section>
   )
 }

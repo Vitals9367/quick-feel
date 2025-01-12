@@ -15,10 +15,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { logout } from "@/utils/auth-helpers/client"
 import { useRouter } from 'next/navigation'
 
 export function UserNav() {
   const router = useRouter()
+
+  const onLogout = async () => {
+    await logout();
+    return router.push('/login'); 
+  }
 
   return (
     <DropdownMenu>
@@ -52,7 +58,7 @@ export function UserNav() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => router.push('/login')}>
+        <DropdownMenuItem onClick={onLogout}>
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>

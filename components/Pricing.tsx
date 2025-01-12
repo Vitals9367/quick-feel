@@ -1,57 +1,93 @@
 'use client'
 
+import { User } from '@supabase/supabase-js';
+import type { Tables } from '@/types_db';
+import { useRouter, usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { getStripe } from '@/utils/stripe/client';
+import { checkoutWithStripe } from '@/utils/stripe/server';
+import { getErrorRedirect } from '@/utils/helpers';
 import { Check } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { staggerChildren, fadeIn, slideInFromLeft } from './animations'
 
-const plans = [
-  {
-    name: "Startup",
-    price: "19",
-    description: "Ideal for small teams or businesses.",
-    features: [
-      "1 project",
-      "500 feedback submissions per month",
-      "Basic sentiment & emotion analysis",
-      "Email support (Standard response time)"
-    ]
-  },
-  {
-    name: "Growth",
-    price: "39",
-    description: "For growing teams with more advanced needs.",
-    popular: true,
-    features: [
-      "Everything in Startup Plan",
-      "Unlimited projects",
-      "Unlimited feedback submissions",
-      "Advanced sentiment & emotion analysis",
-      "Priority support (Faster response time)",
-      "Unlimited users",
-      "Customizable reports and dashboards",
-      "Custom branding"
-    ]
-  },
-  {
-    name: "Enterprise",
-    price: "99",
-    description: "For large enterprises needing custom solutions.",
-    features: [
-      "Everything in Growth Plan",
-      "Single Sign-On (SSO) integration",
-      "Custom Service Level Agreement (SLA)",
-      "Custom integrations and API endpoints",
-      "Advanced reporting features",
-      "24/7 premium support"
-    ]
-  }
-]
+type Subscription = Tables<'subscriptions'>;
+type Product = Tables<'products'>;
+type Price = Tables<'prices'>;
+interface ProductWithPrices extends Product {
+  prices: Price[];
+}
+interface PriceWithProduct extends Price {
+  products: Product | null;
+}
+interface SubscriptionWithProduct extends Subscription {
+  prices: PriceWithProduct | null;
+}
 
-export default function Pricing() {
+interface Props {
+  user: User | null | undefined;
+  products: ProductWithPrices[];
+  subscription: SubscriptionWithProduct | null;
+}
+
+type BillingInterval = 'lifetime' | 'year' | 'month';
+
+export default function Pricing({ user, products, subscription }: Props) {
+
+  const intervals = Array.from(
+    new Set(
+      products.flatMap((product) =>
+        product?.prices?.map((price) => price?.interval)
+      )
+    )
+  );
+  const router = useRouter();
+  const [billingInterval, setBillingInterval] =
+    useState<BillingInterval>('month');
+  const [priceIdLoading, setPriceIdLoading] = useState<string>();
+  const currentPath = usePathname();
+
+  const handleStripeCheckout = async (price: Price) => {
+    setPriceIdLoading(price.id);
+
+    if (!user) {
+      setPriceIdLoading(undefined);
+      return router.push('/signin/signup');
+    }
+
+    const { errorRedirect, sessionId } = await checkoutWithStripe(
+      price,
+      currentPath
+    );
+
+    if (errorRedirect) {
+      setPriceIdLoading(undefined);
+      return router.push(errorRedirect);
+    }
+
+    if (!sessionId) {
+      setPriceIdLoading(undefined);
+      return router.push(
+        getErrorRedirect(
+          currentPath,
+          'An unknown error occurred.',
+          'Please try again later or contact a system administrator.'
+        )
+      );
+    }
+
+    const stripe = await getStripe();
+    stripe?.redirectToCheckout({ sessionId });
+
+    setPriceIdLoading(undefined);
+  };
+
   return (
-    <section className="w-full py-24">
+    <section 
+      id="pricing"
+      className="w-full py-24">
       <div className="container px-4 md:px-6">
         <motion.div 
           initial="hidden"
@@ -75,17 +111,33 @@ export default function Pricing() {
           variants={staggerChildren}
           className="grid grid-cols-1 gap-6 mt-12 md:grid-cols-3 md:gap-8"
         >
-          {plans.map((plan) => (
+          {products.map((product, index) => {
+            console.log(product)
+            const price = product?.prices?.find(
+              (price) => price.interval === billingInterval
+            );
+
+            if (!price) return null;
+
+            const priceString = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: price.currency!,
+              minimumFractionDigits: 0
+            }).format((price?.unit_amount || 0) / 100);
+            
+            const popular = index === 1
+
+            return (
             <motion.div
-              key={plan.name}
+              key={product.name}
               variants={fadeIn}
               whileHover={{ y: -5 }}
               className={cn(
                 "relative rounded-2xl bg-white p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl",
-                plan.popular && "border-2 border-[#2A9D8F]"
+                popular && "border-2 border-[#2A9D8F]"
               )}
             >
-              {plan.popular && (
+              {popular && (
                 <motion.div 
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -97,18 +149,18 @@ export default function Pricing() {
                 </motion.div>
               )}
               <div className="space-y-4">
-                <h3 className="text-xl font-bold">{plan.name}</h3>
+                <h3 className="text-xl font-bold">{product.name}</h3>
                 <div className="flex items-baseline">
-                  <span className="text-4xl font-bold">${plan.price}</span>
+                  <span className="text-4xl font-bold">{priceString}</span>
                   <span className="text-gray-500 ml-1">/month</span>
                 </div>
-                <p className="text-gray-500">{plan.description}</p>
+                <p className="text-gray-500">{product.description}</p>
               </div>
               <motion.ul 
                 variants={staggerChildren}
                 className="mt-8 space-y-4"
               >
-                {plan.features.map((feature) => (
+                {/* {plan.features.map((feature) => (
                   <motion.li 
                     key={feature}
                     variants={slideInFromLeft}
@@ -119,15 +171,15 @@ export default function Pricing() {
                     </div>
                     <span className="text-gray-700">{feature}</span>
                   </motion.li>
-                ))}
+                ))} */}
               </motion.ul>
               <Button 
                 className="w-full mt-8 bg-[#2A9D8F] hover:bg-[#238579] text-white transition-transform hover:scale-105 duration-200"
               >
-                Start for ${plan.price}/month
+                Start for {priceString}/month
               </Button>
             </motion.div>
-          ))}
+          )})}
         </motion.div>
       </div>
     </section>

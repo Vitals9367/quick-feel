@@ -5,6 +5,7 @@ import { type Provider } from '@supabase/supabase-js';
 import { getURL } from '@/utils/helpers';
 import { redirectToPath } from './server';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { redirect } from 'next/navigation';
 
 export async function handleRequest(
   e: React.FormEvent<HTMLFormElement>,
@@ -26,19 +27,49 @@ export async function handleRequest(
   }
 }
 
-export async function signInWithOAuth(e: React.FormEvent<HTMLFormElement>) {
-  // Prevent default form submission refresh
-  e.preventDefault();
-  const formData = new FormData(e.currentTarget);
-  const provider = String(formData.get('provider')).trim() as Provider;
+export async function signInWithOAuth(prv: string) {
+  const provider = String(prv).trim() as Provider;
 
   // Create client-side supabase client and call signInWithOAuth
   const supabase = createClient();
-  const redirectURL = getURL('/auth/callback');
+  const redirectURL = getURL('/api/auth/callback');
   await supabase.auth.signInWithOAuth({
     provider: provider,
     options: {
       redirectTo: redirectURL
     }
   });
+}
+
+export async function signUpWithEmail(email: string, password: string) {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data.user;
+}
+
+export async function signInWithEmail(email: string, password: string) {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data.user;
+}
+
+export const logout = async () => {
+  const supabase = createClient();
+  await supabase.auth.signOut();
 }
