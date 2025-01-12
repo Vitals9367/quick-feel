@@ -3,7 +3,9 @@ import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allPosts = await getAllPosts();
-  const baseUrl = (process.env.NEXT_PUBLIC_VERCEL_URL || "/").replace(/\/+$/, "");
+
+  // prettier-ignore
+  const baseUrl = (process.env.NEXT_PUBLIC_VERCEL_URL || "/").replace(/\/+$/, "",);
 
   const baseSitemap = [
     {
