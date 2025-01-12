@@ -1,11 +1,9 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { Home, ArrowLeft } from 'lucide-react'
-import Image from 'next/image'
-import { siteConfig } from '@/data/site-config'
-import Logo from '@/components/logo'
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Home, ArrowLeft } from "lucide-react";
+import Logo from "@/components/logo";
 
 export default function NotFound() {
   return (
@@ -24,13 +22,14 @@ export default function NotFound() {
             Page not found
           </h2>
           <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed">
-            We couldn't find the page you're looking for. It might have been moved, deleted, or never existed.
+            We couldn't find the page you're looking for. It might have been
+            moved, deleted, or never existed.
           </p>
 
           {/* Navigation Options */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button 
-              variant="default" 
+            <Button
+              variant="default"
               className="bg-[#2A9D8F] hover:bg-[#238579] text-white"
               asChild
             >
@@ -39,8 +38,8 @@ export default function NotFound() {
                 Back to Home
               </Link>
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="border-[#2A9D8F] text-[#2A9D8F] hover:bg-[#2A9D8F] hover:text-white"
               onClick={() => window.history.back()}
             >
@@ -51,6 +50,5 @@ export default function NotFound() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

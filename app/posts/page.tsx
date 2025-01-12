@@ -1,19 +1,20 @@
-import { Metadata } from 'next'
-import { getAllPosts, getAllCategories } from '@/lib/posts'
-import { PostCard } from '@/components/blog/post-card'
-import { Badge } from "@/components/ui/badge"
-import Link from 'next/link'
+import { PostCard } from "@/components/blog/post-card";
+import { Badge } from "@/components/ui/badge";
+import { getAllCategories, getAllPosts } from "@/lib/posts";
+import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: 'Blog | QuickFeel',
-  description: 'Latest insights about customer feedback analysis and experience management',
-}
+  title: "Blog | QuickFeel",
+  description:
+    "Latest insights about customer feedback analysis and experience management",
+};
 
 export default async function BlogPage() {
   const [posts, categories] = await Promise.all([
     getAllPosts(),
     getAllCategories(),
-  ])
+  ]);
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -22,10 +23,11 @@ export default async function BlogPage() {
           Our Blog
         </h1>
         <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-          Latest insights about customer feedback analysis and experience management
+          Latest insights about customer feedback analysis and experience
+          management
         </p>
       </div>
-      
+
       <div className="mt-8 flex flex-wrap gap-2 justify-center">
         {categories.map((category) => (
           <Badge key={category.slug} variant="secondary">
@@ -42,6 +44,5 @@ export default async function BlogPage() {
         ))}
       </div>
     </div>
-  )
+  );
 }
-

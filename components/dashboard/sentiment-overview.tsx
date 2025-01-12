@@ -1,20 +1,33 @@
-'use client'
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Tooltip } from "recharts"
-import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+  Tooltip,
+} from "recharts";
+import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
 
 const data = [
-  { name: 'Positive', value: 65, color: '#2A9D8F' },
-  { name: 'Neutral', value: 25, color: '#E9C46A' },
-  { name: 'Negative', value: 10, color: '#E76F51' },
-]
+  { name: "Positive", value: 65, color: "#2A9D8F" },
+  { name: "Neutral", value: 25, color: "#E9C46A" },
+  { name: "Negative", value: 10, color: "#E76F51" },
+];
 
 const stats = [
-  { name: 'Total Feedback', value: '2,847' },
-  { name: 'Sentiment Score', value: '8.2/10' },
-  { name: 'Weekly Change', value: '+12%', trend: 'up' },
-]
+  { name: "Total Feedback", value: "2,847" },
+  { name: "Sentiment Score", value: "8.2/10" },
+  { name: "Weekly Change", value: "+12%", trend: "up" },
+];
 
 export function SentimentOverview() {
   return (
@@ -41,16 +54,16 @@ export function SentimentOverview() {
                     dataKey="value"
                   >
                     {data.map((entry, index) => (
-                      <Cell 
-                        key={`cell-${index}`} 
+                      <Cell
+                        key={`cell-${index}`}
                         fill={entry.color}
                         name={entry.name}
                       />
                     ))}
                   </Pie>
                   <Tooltip content={<ChartTooltip />} />
-                  <Legend 
-                    verticalAlign="middle" 
+                  <Legend
+                    verticalAlign="middle"
                     align="right"
                     layout="vertical"
                     formatter={(value: string) => (
@@ -70,12 +83,12 @@ export function SentimentOverview() {
                 <p className="text-sm font-medium text-muted-foreground">
                   {stat.name}
                 </p>
-                <p className="text-2xl font-bold">
-                  {stat.value}
-                </p>
+                <p className="text-2xl font-bold">{stat.value}</p>
                 {stat.trend && (
-                  <p className={`text-xs ${stat.trend === 'up' ? 'text-green-500' : 'text-red-500'}`}>
-                    {stat.trend === 'up' ? '↑' : '↓'} vs last week
+                  <p
+                    className={`text-xs ${stat.trend === "up" ? "text-green-500" : "text-red-500"}`}
+                  >
+                    {stat.trend === "up" ? "↑" : "↓"} vs last week
                   </p>
                 )}
               </div>
@@ -84,6 +97,5 @@ export function SentimentOverview() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
-

@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,43 +9,46 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { MoreVertical, Pencil, Archive, Trash2 } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import type { Project } from "@/types/dashboard"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { MoreVertical, Pencil, Archive, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import type { Project } from "@/types/dashboard";
 
 interface ProjectControlsProps {
-  project: Project
-  onUpdate: (project: Project) => void
-  onDelete: (projectId: string) => void
+  project: Project;
+  onUpdate: (project: Project) => void;
+  onDelete: (projectId: string) => void;
 }
 
-export function ProjectControls({ project, onUpdate, onDelete }: ProjectControlsProps) {
-  const router = useRouter()
-  const [isRenameOpen, setIsRenameOpen] = useState(false)
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
-  const [newName, setNewName] = useState(project.name)
+export function ProjectControls({
+  project,
+  onUpdate,
+  onDelete,
+}: ProjectControlsProps) {
+  const router = useRouter();
+  const [isRenameOpen, setIsRenameOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [newName, setNewName] = useState(project.name);
 
   const handleRename = () => {
-    onUpdate({ ...project, name: newName })
-    setIsRenameOpen(false)
-  }
+    onUpdate({ ...project, name: newName });
+    setIsRenameOpen(false);
+  };
 
   const handleDelete = () => {
-    onDelete(project.id)
-    setIsDeleteOpen(false)
-    router.push('/dashboard')
-  }
+    onDelete(project.id);
+    setIsDeleteOpen(false);
+    router.push("/dashboard");
+  };
 
   return (
     <div className="flex items-center gap-2">
@@ -83,7 +86,8 @@ export function ProjectControls({ project, onUpdate, onDelete }: ProjectControls
           <DialogHeader>
             <DialogTitle>Delete Project</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete this project? This action cannot be undone.
+              Are you sure you want to delete this project? This action cannot
+              be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -125,6 +129,5 @@ export function ProjectControls({ project, onUpdate, onDelete }: ProjectControls
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-  )
+  );
 }
-

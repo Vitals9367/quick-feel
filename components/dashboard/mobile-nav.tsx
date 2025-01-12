@@ -1,26 +1,33 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { LayoutDashboard, MessageSquare, BarChart2, Bell, Settings, Users } from 'lucide-react'
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import { cn } from "@/lib/utils";
+import {
+  LayoutDashboard,
+  MessageSquare,
+  BarChart2,
+  Bell,
+  Settings,
+  Users,
+} from "lucide-react";
 
 const navigation = [
-  { name: 'Overview', href: '/dashboard', icon: LayoutDashboard },
-  { name: 'Feedback', href: '/dashboard/feedback', icon: MessageSquare },
-  { name: 'Reports', href: '/dashboard/reports', icon: BarChart2 },
-  { name: 'Alerts', href: '/dashboard/alerts', icon: Bell },
-  { name: 'Team', href: '/dashboard/team', icon: Users },
-  { name: 'Settings', href: '/dashboard/settings', icon: Settings },
-]
+  { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Feedback", href: "/dashboard/feedback", icon: MessageSquare },
+  { name: "Reports", href: "/dashboard/reports", icon: BarChart2 },
+  { name: "Alerts", href: "/dashboard/alerts", icon: Bell },
+  { name: "Team", href: "/dashboard/team", icon: Users },
+  { name: "Settings", href: "/dashboard/settings", icon: Settings },
+];
 
 export function MobileNav() {
-  const [open, setOpen] = useState(false)
-  const pathname = usePathname()
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -45,18 +52,18 @@ export function MobileNav() {
               href={item.href}
               onClick={() => setOpen(false)}
               className={cn(
-                'group flex items-center gap-x-3 rounded-md p-2 text-sm font-semibold',
+                "group flex items-center gap-x-3 rounded-md p-2 text-sm font-semibold",
                 pathname === item.href
-                  ? 'bg-gray-50 text-[#2A9D8F]'
-                  : 'text-gray-700 hover:text-[#2A9D8F] hover:bg-gray-50'
+                  ? "bg-gray-50 text-[#2A9D8F]"
+                  : "text-gray-700 hover:text-[#2A9D8F] hover:bg-gray-50",
               )}
             >
               <item.icon
                 className={cn(
-                  'h-6 w-6 shrink-0',
+                  "h-6 w-6 shrink-0",
                   pathname === item.href
-                    ? 'text-[#2A9D8F]'
-                    : 'text-gray-400 group-hover:text-[#2A9D8F]'
+                    ? "text-[#2A9D8F]"
+                    : "text-gray-400 group-hover:text-[#2A9D8F]",
                 )}
                 aria-hidden="true"
               />
@@ -66,6 +73,5 @@ export function MobileNav() {
         </nav>
       </SheetContent>
     </Sheet>
-  )
+  );
 }
-

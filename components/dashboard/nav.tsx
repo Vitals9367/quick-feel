@@ -1,11 +1,20 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
-import { LayoutDashboard, FolderKanban, MessageSquare, FileText, Settings, HelpCircle, Search, Plus, Cable, LineChart } from 'lucide-react'
-import { Input } from "@/components/ui/input"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  LayoutDashboard,
+  FolderKanban,
+  MessageSquare,
+  FileText,
+  Settings,
+  HelpCircle,
+  Plus,
+  Cable,
+  LineChart,
+} from "lucide-react";
+import { Input } from "@/components/ui/input";
 import {
   Sidebar,
   SidebarContent,
@@ -16,17 +25,12 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-  SidebarMenuSubButton,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import type { Project } from "@/types/dashboard"
-import Image from 'next/image'
-import { siteConfig } from '@/data/site-config'
-import Logo from '../logo'
+} from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import type { Project } from "@/types/dashboard";
+import Logo from "../logo";
 
 // Mock projects data
 const mockProjects: Project[] = [
@@ -39,8 +43,8 @@ const mockProjects: Project[] = [
       sentimentScore: 8.5,
       feedbackCount: 1250,
       lastUpdated: new Date(),
-      trendingTopics: ["UI", "Performance"]
-    }
+      trendingTopics: ["UI", "Performance"],
+    },
   },
   {
     id: "2",
@@ -51,31 +55,51 @@ const mockProjects: Project[] = [
       sentimentScore: 7.8,
       feedbackCount: 890,
       lastUpdated: new Date(),
-      trendingTopics: ["Speed", "Features"]
-    }
-  }
-]
+      trendingTopics: ["Speed", "Features"],
+    },
+  },
+];
 
 export function DashboardNav() {
-  const pathname = usePathname()
-  const [searchQuery, setSearchQuery] = useState("")
-  const [projects, setProjects] = useState(mockProjects)
+  const pathname = usePathname();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [projects, setProjects] = useState(mockProjects);
 
   // Get current project ID from pathname
-  const currentProjectId = pathname.split('/projects/')[1]?.split('/')[0]
-  const currentProject = projects.find(p => p.id === currentProjectId)
+  const currentProjectId = pathname.split("/projects/")[1]?.split("/")[0];
+  const currentProject = projects.find((p) => p.id === currentProjectId);
 
-  const filteredProjects = projects.filter(project =>
-    project.name.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  const filteredProjects = projects.filter((project) =>
+    project.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
   const getProjectMenuItems = (projectId: string) => [
-    { name: 'Overview', href: `/dashboard/projects/${projectId}`, icon: LayoutDashboard },
-    { name: 'Feedback', href: `/dashboard/projects/${projectId}/feedback`, icon: MessageSquare },
-    { name: 'Data Sources', href: `/dashboard/projects/${projectId}/sources`, icon: Cable },
-    { name: 'Reports', href: `/dashboard/projects/${projectId}/reports`, icon: FileText },
-    { name: 'Insights', href: `/dashboard/projects/${projectId}/insights`, icon: LineChart },
-  ]
+    {
+      name: "Overview",
+      href: `/dashboard/projects/${projectId}`,
+      icon: LayoutDashboard,
+    },
+    {
+      name: "Feedback",
+      href: `/dashboard/projects/${projectId}/feedback`,
+      icon: MessageSquare,
+    },
+    {
+      name: "Data Sources",
+      href: `/dashboard/projects/${projectId}/sources`,
+      icon: Cable,
+    },
+    {
+      name: "Reports",
+      href: `/dashboard/projects/${projectId}/reports`,
+      icon: FileText,
+    },
+    {
+      name: "Insights",
+      href: `/dashboard/projects/${projectId}/insights`,
+      icon: LineChart,
+    },
+  ];
 
   return (
     <Sidebar>
@@ -103,7 +127,7 @@ export function DashboardNav() {
                 <SidebarMenuItem>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname === '/dashboard'}
+                    isActive={pathname === "/dashboard"}
                   >
                     <Link href="/dashboard">
                       <LayoutDashboard className="mr-2 h-4 w-4" />
@@ -148,7 +172,7 @@ export function DashboardNav() {
                 <SidebarMenuItem>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname === '/dashboard/settings'}
+                    isActive={pathname === "/dashboard/settings"}
                   >
                     <Link href="/dashboard/settings">
                       <Settings className="mr-2 h-4 w-4" />
@@ -159,7 +183,7 @@ export function DashboardNav() {
                 <SidebarMenuItem>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname === '/dashboard/help'}
+                    isActive={pathname === "/dashboard/help"}
                   >
                     <Link href="/dashboard/help">
                       <HelpCircle className="mr-2 h-4 w-4" />
@@ -174,6 +198,5 @@ export function DashboardNav() {
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
-

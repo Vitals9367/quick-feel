@@ -1,19 +1,21 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ProjectOverview } from "./project-overview"
-import { ProjectFeedback } from "./project-feedback"
-import { DataSourceList } from "./data-source-list"
-import { ProjectReports } from "./project-reports"
-import { ProjectInsights } from "./project-insights"
-import { ProjectControls } from "./project-controls"
-import type { ProjectWithDetails } from "@/types/dashboard"
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ProjectOverview } from "./project-overview";
+import { ProjectFeedback } from "./project-feedback";
+import { DataSourceList } from "./data-source-list";
+import { ProjectReports } from "./project-reports";
+import { ProjectInsights } from "./project-insights";
+import { ProjectControls } from "./project-controls";
+import type { ProjectWithDetails } from "@/types/dashboard";
 
 // Mock data fetching function
-const fetchProjectDetails = async (projectId: string): Promise<ProjectWithDetails> => {
+const fetchProjectDetails = async (
+  projectId: string,
+): Promise<ProjectWithDetails> => {
   // This would be replaced with actual API call
   return {
     id: projectId,
@@ -24,7 +26,7 @@ const fetchProjectDetails = async (projectId: string): Promise<ProjectWithDetail
       sentimentScore: 8.5,
       feedbackCount: 1250,
       lastUpdated: new Date(),
-      trendingTopics: ["UI", "Performance", "Speed"]
+      trendingTopics: ["UI", "Performance", "Speed"],
     },
     dataSources: [
       {
@@ -35,9 +37,9 @@ const fetchProjectDetails = async (projectId: string): Promise<ProjectWithDetail
         status: "active",
         connectedAt: new Date(),
         settings: {
-          frequency: "daily"
-        }
-      }
+          frequency: "daily",
+        },
+      },
     ],
     recentFeedback: [
       {
@@ -49,33 +51,33 @@ const fetchProjectDetails = async (projectId: string): Promise<ProjectWithDetail
         createdAt: new Date(),
         source: {
           type: "survey",
-          name: "Customer Satisfaction Survey"
-        }
-      }
-    ]
-  }
-}
+          name: "Customer Satisfaction Survey",
+        },
+      },
+    ],
+  };
+};
 
 export function ProjectDashboard({ projectId }: { projectId: string }) {
-  const [project, setProject] = useState<ProjectWithDetails | null>(null)
-  const router = useRouter()
+  const [project, setProject] = useState<ProjectWithDetails | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    fetchProjectDetails(projectId).then(setProject)
-  }, [projectId])
+    fetchProjectDetails(projectId).then(setProject);
+  }, [projectId]);
 
   const handleProjectUpdate = (updatedProject: ProjectWithDetails) => {
-    setProject(updatedProject)
+    setProject(updatedProject);
     // TODO: Implement API call to update project
-  }
+  };
 
   const handleProjectDelete = async (projectId: string) => {
     // TODO: Implement API call to delete project
-    router.push('/dashboard')
-  }
+    router.push("/dashboard");
+  };
 
   if (!project) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
@@ -96,31 +98,31 @@ export function ProjectDashboard({ projectId }: { projectId: string }) {
 
       <Tabs defaultValue="overview" className="space-y-6">
         <TabsList className="bg-background w-full justify-start border-b rounded-none p-0">
-          <TabsTrigger 
-            value="overview" 
+          <TabsTrigger
+            value="overview"
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary"
           >
             Overview
           </TabsTrigger>
-          <TabsTrigger 
+          <TabsTrigger
             value="feedback"
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary"
           >
             Feedback
           </TabsTrigger>
-          <TabsTrigger 
+          <TabsTrigger
             value="sources"
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary"
           >
             Data Sources
           </TabsTrigger>
-          <TabsTrigger 
+          <TabsTrigger
             value="reports"
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary"
           >
             Reports
           </TabsTrigger>
-          <TabsTrigger 
+          <TabsTrigger
             value="insights"
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary"
           >
@@ -144,6 +146,5 @@ export function ProjectDashboard({ projectId }: { projectId: string }) {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
-

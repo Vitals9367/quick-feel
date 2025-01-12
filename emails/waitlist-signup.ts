@@ -108,4 +108,4 @@ const htmlTemplate = `
 </html>
 `;
 
-export default htmlTemplate; 
+export default htmlTemplate;

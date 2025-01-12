@@ -1,16 +1,16 @@
-import { Metadata } from 'next'
-import { DashboardHeader } from '@/components/dashboard/header'
-import { DashboardShell } from '@/components/dashboard/shell'
-import { SentimentOverview } from '@/components/dashboard/sentiment-overview'
-import { TrendAnalysis } from '@/components/dashboard/trend-analysis'
-import { FeedbackSources } from '@/components/dashboard/feedback-sources'
-import { KeyInsights } from '@/components/dashboard/key-insights'
-import { RecentFeedback } from '@/components/dashboard/recent-feedback'
+import { FeedbackSources } from "@/components/dashboard/feedback-sources";
+import { DashboardHeader } from "@/components/dashboard/header";
+import { KeyInsights } from "@/components/dashboard/key-insights";
+import { RecentFeedback } from "@/components/dashboard/recent-feedback";
+import { SentimentOverview } from "@/components/dashboard/sentiment-overview";
+import { DashboardShell } from "@/components/dashboard/shell";
+import { TrendAnalysis } from "@/components/dashboard/trend-analysis";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Dashboard | QuickFeel',
-  description: 'Monitor and analyze your customer feedback in real-time.',
-}
+  title: "Dashboard | QuickFeel",
+  description: "Monitor and analyze your customer feedback in real-time.",
+};
 
 export default function DashboardPage() {
   return (
@@ -37,6 +37,5 @@ export default function DashboardPage() {
         </div>
       </div>
     </DashboardShell>
-  )
+  );
 }
-

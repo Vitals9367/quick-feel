@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Plus, Settings2, Power, Trash2 } from 'lucide-react'
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Plus, Settings2, Power, Trash2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -13,17 +13,17 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import type { DataSource } from "@/types/dashboard"
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import type { DataSource } from "@/types/dashboard";
 
 export function DataSourceList({ projectId }: { projectId: string }) {
   const [dataSources, setDataSources] = useState<DataSource[]>([
@@ -35,8 +35,8 @@ export function DataSourceList({ projectId }: { projectId: string }) {
       status: "active",
       connectedAt: new Date("2024-01-01"),
       settings: {
-        frequency: "daily"
-      }
+        frequency: "daily",
+      },
     },
     {
       id: "2",
@@ -47,43 +47,46 @@ export function DataSourceList({ projectId }: { projectId: string }) {
       connectedAt: new Date("2024-01-05"),
       settings: {
         frequency: "realtime",
-        keywords: ["#quickfeel", "@quickfeel"]
-      }
-    }
-  ])
+        keywords: ["#quickfeel", "@quickfeel"],
+      },
+    },
+  ]);
 
-  const [isAddSourceDialogOpen, setIsAddSourceDialogOpen] = useState(false)
+  const [isAddSourceDialogOpen, setIsAddSourceDialogOpen] = useState(false);
   const [newSource, setNewSource] = useState({
     type: "",
     name: "",
-    frequency: "daily"
-  })
+    frequency: "daily",
+  });
 
   const handleAddSource = () => {
-    if (!newSource.type || !newSource.name) return
+    if (!newSource.type || !newSource.name) return;
 
     const source: DataSource = {
       id: Math.random().toString(36).substr(2, 9),
       projectId,
-      type: newSource.type as DataSource['type'],
+      type: newSource.type as DataSource["type"],
       name: newSource.name,
       status: "active",
       connectedAt: new Date(),
       settings: {
-        frequency: newSource.frequency as DataSource['settings']['frequency']
-      }
-    }
+        frequency: newSource.frequency as DataSource["settings"]["frequency"],
+      },
+    };
 
-    setDataSources([...dataSources, source])
-    setNewSource({ type: "", name: "", frequency: "daily" })
-    setIsAddSourceDialogOpen(false)
-  }
+    setDataSources([...dataSources, source]);
+    setNewSource({ type: "", name: "", frequency: "daily" });
+    setIsAddSourceDialogOpen(false);
+  };
 
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Data Sources</h2>
-        <Dialog open={isAddSourceDialogOpen} onOpenChange={setIsAddSourceDialogOpen}>
+        <Dialog
+          open={isAddSourceDialogOpen}
+          onOpenChange={setIsAddSourceDialogOpen}
+        >
           <DialogTrigger asChild>
             <Button>
               <Plus className="mr-2 h-4 w-4" />
@@ -102,7 +105,9 @@ export function DataSourceList({ projectId }: { projectId: string }) {
                 <Label htmlFor="type">Source Type</Label>
                 <Select
                   value={newSource.type}
-                  onValueChange={(value) => setNewSource({ ...newSource, type: value })}
+                  onValueChange={(value) =>
+                    setNewSource({ ...newSource, type: value })
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select type" />
@@ -121,7 +126,9 @@ export function DataSourceList({ projectId }: { projectId: string }) {
                 <Input
                   id="name"
                   value={newSource.name}
-                  onChange={(e) => setNewSource({ ...newSource, name: e.target.value })}
+                  onChange={(e) =>
+                    setNewSource({ ...newSource, name: e.target.value })
+                  }
                   placeholder="Enter source name"
                 />
               </div>
@@ -129,7 +136,9 @@ export function DataSourceList({ projectId }: { projectId: string }) {
                 <Label htmlFor="frequency">Update Frequency</Label>
                 <Select
                   value={newSource.frequency}
-                  onValueChange={(value) => setNewSource({ ...newSource, frequency: value })}
+                  onValueChange={(value) =>
+                    setNewSource({ ...newSource, frequency: value })
+                  }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select frequency" />
@@ -144,7 +153,10 @@ export function DataSourceList({ projectId }: { projectId: string }) {
               </div>
             </div>
             <DialogFooter>
-              <Button variant="outline" onClick={() => setIsAddSourceDialogOpen(false)}>
+              <Button
+                variant="outline"
+                onClick={() => setIsAddSourceDialogOpen(false)}
+              >
                 Cancel
               </Button>
               <Button onClick={handleAddSource}>Add Source</Button>
@@ -160,7 +172,11 @@ export function DataSourceList({ projectId }: { projectId: string }) {
               <div className="space-y-1">
                 <h3 className="font-medium">{source.name}</h3>
                 <div className="flex items-center gap-2">
-                  <Badge variant={source.status === 'active' ? 'default' : 'secondary'}>
+                  <Badge
+                    variant={
+                      source.status === "active" ? "default" : "secondary"
+                    }
+                  >
                     {source.status}
                   </Badge>
                   <span className="text-sm text-muted-foreground">
@@ -184,6 +200,5 @@ export function DataSourceList({ projectId }: { projectId: string }) {
         ))}
       </div>
     </div>
-  )
+  );
 }
-

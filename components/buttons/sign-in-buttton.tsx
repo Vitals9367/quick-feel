@@ -1,23 +1,18 @@
-'use client'
+"use client";
 
-import { redirect } from "next/navigation"
-import React from 'react'
+import { redirect } from "next/navigation";
+import React from "react";
 
 interface SignInButtonProps {
-    text?: string
+  text?: string;
 }
 
-const SignInButton: React.FC<SignInButtonProps> = ({text = "Sign Up"}) => {
+const SignInButton: React.FC<SignInButtonProps> = ({ text = "Sign Up" }) => {
+  const onClick = () => {
+    redirect("/login");
+  };
 
-    const onClick = () => {
-        redirect('/login');
-    }
+  return <button onClick={onClick}>{text}</button>;
+};
 
-    return (
-        <button onClick={onClick}>
-            {text}
-        </button>
-    )
-}
-
-export default SignInButton
+export default SignInButton;

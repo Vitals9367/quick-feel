@@ -1,18 +1,23 @@
-'use client'
+"use client";
 
-import loglevel from 'loglevel'
+import loglevel from "loglevel";
 
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Icons } from "@/components/icons"
-import { useRouter } from 'next/navigation'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { FormProvider, useForm } from 'react-hook-form'
-import { signInWithEmail, signInWithOAuth } from '@/utils/auth-helpers/client'
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
+import { Icons } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { signInWithEmail, signInWithOAuth } from "@/utils/auth-helpers/client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { z } from "zod";
 
 const signInSchema = z.object({
   email: z.string().email({
@@ -20,29 +25,28 @@ const signInSchema = z.object({
   }),
   password: z.string().min(8, {
     message: "Password must be at least 8 characters long.",
-  })
-})
+  }),
+});
 
-type SignInValues = z.infer<typeof signInSchema>
+type SignInValues = z.infer<typeof signInSchema>;
 
 export default function LoginForm() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false);
+  const router = useRouter();
 
   const form = useForm<SignInValues>({
-    resolver: zodResolver(signInSchema)
-  })
-
+    resolver: zodResolver(signInSchema),
+  });
 
   async function onSubmit(data: SignInValues) {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      await signInWithEmail(data.email, data.password)
+      await signInWithEmail(data.email, data.password);
     } catch (error) {
-      loglevel.error("Failed to Sign In...")
+      loglevel.error("Failed to Sign In...");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
@@ -56,9 +60,7 @@ export default function LoginForm() {
             disabled={isLoading}
             className="w-full"
           >
-            <Icons.google className="mr-2 h-4 w-4" />
-            {" "}
-            Continue with Google
+            <Icons.google className="mr-2 h-4 w-4" /> Continue with Google
           </Button>
           <Button
             variant="outline"
@@ -83,7 +85,7 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <FormProvider {...form}>  
+      <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="space-y-4">
             <FormField
@@ -142,6 +144,5 @@ export default function LoginForm() {
         </form>
       </FormProvider>
     </div>
-  )
+  );
 }
-

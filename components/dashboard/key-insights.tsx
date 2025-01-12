@@ -1,7 +1,13 @@
-'use client'
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { TrendingUp, TrendingDown, AlertCircle, ThumbsUp } from 'lucide-react'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { TrendingUp, TrendingDown, AlertCircle, ThumbsUp } from "lucide-react";
 
 const insights = [
   {
@@ -9,30 +15,30 @@ const insights = [
     description: "Product quality mentions increased by 25%",
     icon: TrendingUp,
     color: "#2A9D8F",
-    priority: "Positive"
+    priority: "Positive",
   },
   {
     title: "Action Required",
     description: "Customer service response time concerns",
     icon: AlertCircle,
     color: "#E76F51",
-    priority: "High"
+    priority: "High",
   },
   {
     title: "Improvement",
     description: "Mobile app usability feedback improved",
     icon: ThumbsUp,
     color: "#2A9D8F",
-    priority: "Positive"
+    priority: "Positive",
   },
   {
     title: "Declining Trend",
     description: "Website loading speed complaints",
     icon: TrendingDown,
     color: "#E9C46A",
-    priority: "Medium"
-  }
-]
+    priority: "Medium",
+  },
+];
 
 export function KeyInsights() {
   return (
@@ -64,11 +70,11 @@ export function KeyInsights() {
                   <p className="text-sm font-medium">{insight.title}</p>
                   <span
                     className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                      insight.priority === 'High'
-                        ? 'bg-red-100 text-red-700'
-                        : insight.priority === 'Medium'
-                        ? 'bg-yellow-100 text-yellow-700'
-                        : 'bg-green-100 text-green-700'
+                      insight.priority === "High"
+                        ? "bg-red-100 text-red-700"
+                        : insight.priority === "Medium"
+                          ? "bg-yellow-100 text-yellow-700"
+                          : "bg-green-100 text-green-700"
                     }`}
                   >
                     {insight.priority}
@@ -83,6 +89,5 @@ export function KeyInsights() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
-

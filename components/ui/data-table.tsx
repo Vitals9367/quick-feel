@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -14,7 +14,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
 import {
   Table,
   TableBody,
@@ -22,30 +22,30 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { DataTablePagination } from "@/components/ui/data-table-pagination"
-import { DataTableFacetedFilter } from "@/components/ui/data-table-faceted-filter"
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { DataTablePagination } from "@/components/ui/data-table-pagination";
+import { DataTableFacetedFilter } from "@/components/ui/data-table-faceted-filter";
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
   filters?: {
-    id: string
-    title: string
+    id: string;
+    title: string;
     options: {
-      label: string
-      value: string
-      icon?: React.ComponentType<{ className?: string }>
-    }[]
-  }[]
+      label: string;
+      value: string;
+      icon?: React.ComponentType<{ className?: string }>;
+    }[];
+  }[];
 }
 
 export function DataTable<TData, TValue>({
@@ -53,10 +53,13 @@ export function DataTable<TData, TValue>({
   data,
   filters,
 }: DataTableProps<TData, TValue>) {
-  const [rowSelection, setRowSelection] = React.useState({})
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [rowSelection, setRowSelection] = React.useState({});
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
     data,
@@ -78,7 +81,7 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
-  })
+  });
 
   return (
     <div className="space-y-4">
@@ -86,15 +89,17 @@ export function DataTable<TData, TValue>({
         <div className="flex flex-1 items-center space-x-2">
           <Input
             placeholder="Filter feedback..."
-            value={(table.getColumn("content")?.getFilterValue() as string) ?? ""}
+            value={
+              (table.getColumn("content")?.getFilterValue() as string) ?? ""
+            }
             onChange={(event) =>
               table.getColumn("content")?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
           />
           {filters?.map(({ id, title, options }) => {
-            const column = table.getColumn(id)
-            if (!column) return null
+            const column = table.getColumn(id);
+            if (!column) return null;
             return (
               <DataTableFacetedFilter
                 key={id}
@@ -102,7 +107,7 @@ export function DataTable<TData, TValue>({
                 title={title}
                 options={options}
               />
-            )
+            );
           })}
         </div>
         <DropdownMenu>
@@ -127,7 +132,7 @@ export function DataTable<TData, TValue>({
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
-                )
+                );
               })}
           </DropdownMenuContent>
         </DropdownMenu>
@@ -144,10 +149,10 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -163,7 +168,7 @@ export function DataTable<TData, TValue>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -184,6 +189,5 @@ export function DataTable<TData, TValue>({
       </div>
       <DataTablePagination table={table} />
     </div>
-  )
+  );
 }
-

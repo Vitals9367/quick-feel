@@ -1,11 +1,11 @@
-import Logo from '@/components/logo'
-import { Metadata } from 'next'
-import Link from 'next/link'
+import Logo from "@/components/logo";
+import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: 'Coming Soon | QuickFeel',
-  description: 'Something exciting is coming.',
-}
+  title: "Coming Soon | QuickFeel",
+  description: "Something exciting is coming.",
+};
 
 export default function ComingSoonPage() {
   return (
@@ -29,12 +29,15 @@ export default function ComingSoonPage() {
 
         {/* Footer Links */}
         <div className="text-sm text-gray-600">
-          <Link href="/privacy" className="hover:text-[#2A9D8F]">Privacy Policy</Link>
+          <Link href="/privacy" className="hover:text-[#2A9D8F]">
+            Privacy Policy
+          </Link>
           <span className="mx-2">•</span>
-          <Link href="/terms" className="hover:text-[#2A9D8F]">Terms of Service</Link>
+          <Link href="/terms" className="hover:text-[#2A9D8F]">
+            Terms of Service
+          </Link>
         </div>
       </div>
     </div>
-  )
+  );
 }
-

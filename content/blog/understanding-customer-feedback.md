@@ -53,4 +53,3 @@ The most crucial step is acting on the feedback you receive:
 4. Follow up with customers
 
 Remember, collecting feedback is just the beginning. The real value comes from taking meaningful action based on what you learn.
-

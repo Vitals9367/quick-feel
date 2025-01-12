@@ -1,35 +1,42 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Icons } from "@/components/icons"
-import { useRouter } from 'next/navigation'
-import { FormProvider, useForm } from 'react-hook-form'
-import { zodResolver } from "@hookform/resolvers/zod"
-import { FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form"
-import * as z from "zod"
-import { signInWithOAuth, signUpWithEmail } from '@/utils/auth-helpers/client'
-import loglevel from 'loglevel'
+import { Icons } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { signInWithOAuth, signUpWithEmail } from "@/utils/auth-helpers/client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import loglevel from "loglevel";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import * as z from "zod";
 
-const signUpSchema = z.object({
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  password: z.string().min(8, {
-    message: "Password must be at least 8 characters long.",
-  }),
-  confirmPassword: z.string()
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-})
+const signUpSchema = z
+  .object({
+    email: z.string().email({
+      message: "Please enter a valid email address.",
+    }),
+    password: z.string().min(8, {
+      message: "Password must be at least 8 characters long.",
+    }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
 
-type SignUpValues = z.infer<typeof signUpSchema>
+type SignUpValues = z.infer<typeof signUpSchema>;
 
 export default function SignUpForm() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const form = useForm<SignUpValues>({
     resolver: zodResolver(signUpSchema),
@@ -38,16 +45,16 @@ export default function SignUpForm() {
       password: "",
       confirmPassword: "",
     },
-  })
+  });
 
   async function onSubmit(data: SignUpValues) {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      await signUpWithEmail(data.email, data.password)
+      await signUpWithEmail(data.email, data.password);
     } catch (error) {
-      loglevel.error("Failed to Sign Up...")
+      loglevel.error("Failed to Sign Up...");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
@@ -61,9 +68,7 @@ export default function SignUpForm() {
             disabled={isLoading}
             className="w-full"
           >
-            <Icons.google className="mr-2 h-4 w-4" />
-            {" "}
-            Sign up with Google
+            <Icons.google className="mr-2 h-4 w-4" /> Sign up with Google
           </Button>
           <Button
             variant="outline"
@@ -165,6 +170,5 @@ export default function SignUpForm() {
         </form>
       </FormProvider>
     </div>
-  )
+  );
 }
-

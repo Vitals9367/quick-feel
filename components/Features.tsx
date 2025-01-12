@@ -1,15 +1,16 @@
-'use client'
+"use client";
 
-import { motion } from "framer-motion"
-import { features } from '@/data/features'
+import { motion } from "framer-motion";
+import { features } from "@/data/features";
 
 export default function Features() {
   return (
-    <section 
+    <section
       id="features"
-      className="w-full py-24 bg-gradient-to-b from-white to-gray-50">
+      className="w-full py-24 bg-gradient-to-b from-white to-gray-50"
+    >
       <div className="container px-4 md:px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -19,7 +20,8 @@ export default function Features() {
             Core Benefits That Drive Results
           </h2>
           <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl/relaxed">
-            Experience the power of AI-driven feedback analysis and unlock valuable insights for your business.
+            Experience the power of AI-driven feedback analysis and unlock
+            valuable insights for your business.
           </p>
         </motion.div>
 
@@ -38,14 +40,17 @@ export default function Features() {
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#2A9D8F]/10 text-[#2A9D8F] group-hover:scale-110 transition-transform duration-300">
                   <feature.icon size={32} />
                 </div>
-                <h3 className="text-xl font-bold text-[#1D3557]">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl font-bold text-[#1D3557]">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
-

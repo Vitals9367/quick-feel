@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { ProjectList } from "@/components/dashboard/projects/project-list"
-import { ProjectManagement } from "@/components/dashboard/projects/project-management"
-import { DashboardHeader } from "@/components/dashboard/header"
-import { DashboardShell } from "@/components/dashboard/shell"
+import { DashboardHeader } from "@/components/dashboard/header";
+import { ProjectList } from "@/components/dashboard/projects/project-list";
+import { ProjectManagement } from "@/components/dashboard/projects/project-management";
+import { DashboardShell } from "@/components/dashboard/shell";
 
 export default function ProjectsPage() {
   return (
@@ -17,6 +17,5 @@ export default function ProjectsPage() {
       </div>
       <ProjectList />
     </DashboardShell>
-  )
+  );
 }
-

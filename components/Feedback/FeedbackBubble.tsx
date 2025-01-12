@@ -1,19 +1,19 @@
-import { MessageCircleMore } from 'lucide-react'
-import React from 'react'
+import { MessageCircleMore } from "lucide-react";
+import React from "react";
 
 interface FeedbackBubbleProps {
-    onClick: VoidFunction
+  onClick: VoidFunction;
 }
 
-const FeedbackBubble: React.FC<FeedbackBubbleProps> = ({onClick}) => {
+const FeedbackBubble: React.FC<FeedbackBubbleProps> = ({ onClick }) => {
   return (
     <button
-        className='w-16 h-16 bg-red-900 rounded-full flex items-center justify-center'
-        onClick={onClick}
+      className="w-16 h-16 bg-red-900 rounded-full flex items-center justify-center"
+      onClick={onClick}
     >
-        <MessageCircleMore />
+      <MessageCircleMore />
     </button>
-  )
-}
+  );
+};
 
-export default FeedbackBubble
+export default FeedbackBubble;

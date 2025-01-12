@@ -1,25 +1,26 @@
-import { Metadata } from 'next'
-import { Button } from "@/components/ui/button"
-import Link from 'next/link'
-import { Check } from 'lucide-react'
+import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
+import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: 'Choose a Plan | QuickFeel',
-  description: 'Select a plan to start analyzing your feedback with QuickFeel.',
-}
+  title: "Choose a Plan | QuickFeel",
+  description: "Select a plan to start analyzing your feedback with QuickFeel.",
+};
 
 const plans = [
   {
     name: "Basic",
     price: "29",
-    description: "Perfect for small teams getting started with feedback analysis",
+    description:
+      "Perfect for small teams getting started with feedback analysis",
     features: [
       "500 feedback analyses per month",
       "Basic sentiment analysis",
       "1 project",
       "Email support",
-      "1 team member"
-    ]
+      "1 team member",
+    ],
   },
   {
     name: "Pro",
@@ -32,9 +33,9 @@ const plans = [
       "Priority support",
       "5 team members",
       "Custom reports",
-      "API access"
+      "API access",
     ],
-    popular: true
+    popular: true,
   },
   {
     name: "Enterprise",
@@ -47,10 +48,10 @@ const plans = [
       "24/7 premium support",
       "Unlimited team members",
       "Custom integrations",
-      "Dedicated account manager"
-    ]
-  }
-]
+      "Dedicated account manager",
+    ],
+  },
+];
 
 export default function NoPlanPage() {
   return (
@@ -68,8 +69,8 @@ export default function NoPlanPage() {
             key={plan.name}
             className={`relative rounded-2xl border bg-card p-8 shadow-sm ${
               plan.popular
-                ? 'border-primary ring-2 ring-primary ring-offset-2'
-                : ''
+                ? "border-primary ring-2 ring-primary ring-offset-2"
+                : ""
             }`}
           >
             {plan.popular && (
@@ -100,7 +101,7 @@ export default function NoPlanPage() {
 
             <Button
               className="w-full"
-              variant={plan.popular ? 'default' : 'outline'}
+              variant={plan.popular ? "default" : "outline"}
             >
               Get Started with {plan.name}
             </Button>
@@ -110,13 +111,15 @@ export default function NoPlanPage() {
 
       <div className="mt-12 text-center">
         <p className="text-muted-foreground">
-          Need a custom plan?{' '}
-          <Link href="/contact" className="font-medium text-primary hover:underline">
+          Need a custom plan?{" "}
+          <Link
+            href="/contact"
+            className="font-medium text-primary hover:underline"
+          >
             Contact our sales team
           </Link>
         </p>
       </div>
     </div>
-  )
+  );
 }
-

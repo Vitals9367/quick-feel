@@ -1,37 +1,40 @@
-import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { getPostsByCategory, getAllCategories } from '@/lib/posts'
-import { PostCard } from '@/components/blog/post-card'
+import { PostCard } from "@/components/blog/post-card";
+import { getAllCategories, getPostsByCategory } from "@/lib/posts";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface CategoryPageProps {
   params: {
-    category: string
-  }
+    category: string;
+  };
 }
 
-export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const category = decodeURIComponent(params.category)
-  const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1)
-  
+export async function generateMetadata({
+  params,
+}: CategoryPageProps): Promise<Metadata> {
+  const category = decodeURIComponent(params.category);
+  const capitalizedCategory =
+    category.charAt(0).toUpperCase() + category.slice(1);
+
   return {
     title: `${capitalizedCategory} Posts | QuickFeel Blog`,
     description: `Read all our blog posts about ${category}`,
-  }
+  };
 }
 
 export async function generateStaticParams() {
-  const categories = await getAllCategories()
+  const categories = await getAllCategories();
   return categories.map((category) => ({
     category: category.slug,
-  }))
+  }));
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const category = decodeURIComponent(params.category)
-  const posts = await getPostsByCategory(category)
+  const category = decodeURIComponent(params.category);
+  const posts = await getPostsByCategory(category);
 
   if (!posts.length) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -40,9 +43,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
           {category.charAt(0).toUpperCase() + category.slice(1)}
         </h1>
-        <p className="text-gray-500 md:text-xl">
-          All posts about {category}
-        </p>
+        <p className="text-gray-500 md:text-xl">All posts about {category}</p>
       </div>
 
       <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -51,6 +52,5 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         ))}
       </div>
     </div>
-  )
+  );
 }
-

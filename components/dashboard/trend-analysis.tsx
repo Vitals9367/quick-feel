@@ -1,19 +1,40 @@
-'use client'
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts"
-import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
+import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const data = [
-  { date: 'Jan 1', positive: 65, negative: 12, neutral: 23 },
-  { date: 'Jan 8', positive: 72, negative: 8, neutral: 20 },
-  { date: 'Jan 15', positive: 68, negative: 15, neutral: 17 },
-  { date: 'Jan 22', positive: 75, negative: 10, neutral: 15 },
-  { date: 'Jan 29', positive: 80, negative: 7, neutral: 13 },
-  { date: 'Feb 5', positive: 78, negative: 9, neutral: 13 },
-  { date: 'Feb 12', positive: 82, negative: 6, neutral: 12 },
-]
+  { date: "Jan 1", positive: 65, negative: 12, neutral: 23 },
+  { date: "Jan 8", positive: 72, negative: 8, neutral: 20 },
+  { date: "Jan 15", positive: 68, negative: 15, neutral: 17 },
+  { date: "Jan 22", positive: 75, negative: 10, neutral: 15 },
+  { date: "Jan 29", positive: 80, negative: 7, neutral: 13 },
+  { date: "Feb 5", positive: 78, negative: 9, neutral: 13 },
+  { date: "Feb 12", positive: 82, negative: 6, neutral: 12 },
+];
 
 export function TrendAnalysis() {
   return (
@@ -21,9 +42,7 @@ export function TrendAnalysis() {
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-7">
         <div className="space-y-1">
           <CardTitle>Sentiment Trends</CardTitle>
-          <CardDescription>
-            Track sentiment changes over time
-          </CardDescription>
+          <CardDescription>Track sentiment changes over time</CardDescription>
         </div>
         <Select defaultValue="30d">
           <SelectTrigger className="w-[120px]">
@@ -59,7 +78,7 @@ export function TrendAnalysis() {
                   tickFormatter={(value) => `${value}%`}
                 />
                 <Tooltip content={<ChartTooltip />} />
-                <Legend 
+                <Legend
                   formatter={(value: string) => (
                     <span className="text-sm">{value}</span>
                   )}
@@ -114,6 +133,5 @@ export function TrendAnalysis() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
-

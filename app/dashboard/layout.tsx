@@ -1,13 +1,13 @@
-import { DashboardNav } from '@/components/dashboard/nav'
-import { UserNav } from '@/components/dashboard/user-nav'
-import { MobileNav } from '@/components/dashboard/mobile-nav'
-import { SidebarProvider } from "@/components/ui/sidebar"
-import { FeedbackBubble } from '@/components/feedback-bubble'
+import { DashboardNav } from "@/components/dashboard/nav";
+import { UserNav } from "@/components/dashboard/user-nav";
+import { MobileNav } from "@/components/dashboard/mobile-nav";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { FeedbackBubble } from "@/components/feedback-bubble";
 
 export default function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <SidebarProvider>
@@ -31,9 +31,7 @@ export default function DashboardLayout({
           </div>
 
           <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">
-              {children}
-            </div>
+            <div className="px-4 sm:px-6 lg:px-8">{children}</div>
           </main>
         </div>
 
@@ -41,6 +39,5 @@ export default function DashboardLayout({
         <FeedbackBubble />
       </div>
     </SidebarProvider>
-  )
+  );
 }
-

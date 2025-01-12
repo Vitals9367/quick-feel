@@ -1,33 +1,34 @@
-'use client'
+"use client";
 
-import { Upload, Cpu, LineChart } from 'lucide-react'
-import { motion } from "framer-motion"
+import { Upload, Cpu, LineChart } from "lucide-react";
+import { motion } from "framer-motion";
 
 const steps = [
   {
     icon: Upload,
     title: "Upload Your Feedback Data",
-    description: "Simply upload customer reviews, surveys, or comments from any source."
+    description:
+      "Simply upload customer reviews, surveys, or comments from any source.",
   },
   {
     icon: Cpu,
     title: "AI Analysis in Action",
-    description: "Our advanced AI categorizes feedback and identifies key trends automatically."
+    description:
+      "Our advanced AI categorizes feedback and identifies key trends automatically.",
   },
   {
     icon: LineChart,
     title: "Get Actionable Insights",
-    description: "Use clear, data-driven insights to improve your business strategy."
-  }
-]
+    description:
+      "Use clear, data-driven insights to improve your business strategy.",
+  },
+];
 
 export default function HowItWorks() {
   return (
-    <section 
-      id="how-it-works"
-      className="w-full py-24 bg-white">
+    <section id="how-it-works" className="w-full py-24 bg-white">
       <div className="container px-4 md:px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -37,7 +38,8 @@ export default function HowItWorks() {
             How QuickFeel Works
           </h2>
           <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl/relaxed">
-            Three simple steps to transform your feedback into actionable insights
+            Three simple steps to transform your feedback into actionable
+            insights
           </p>
         </motion.div>
 
@@ -57,16 +59,20 @@ export default function HowItWorks() {
               <div className="relative">
                 <div className="absolute inset-0 bg-[#2A9D8F]/10 rounded-full blur-xl group-hover:bg-[#2A9D8F]/20 transition-colors duration-300" />
                 <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white border-2 border-[#2A9D8F]/30 group-hover:border-[#2A9D8F] transition-colors duration-300">
-                  <step.icon size={32} className="text-[#2A9D8F] group-hover:scale-110 transition-transform duration-300" />
+                  <step.icon
+                    size={32}
+                    className="text-[#2A9D8F] group-hover:scale-110 transition-transform duration-300"
+                  />
                 </div>
               </div>
-              <h3 className="mt-6 text-xl font-bold text-[#1D3557]">{step.title}</h3>
+              <h3 className="mt-6 text-xl font-bold text-[#1D3557]">
+                {step.title}
+              </h3>
               <p className="mt-2 text-gray-600">{step.description}</p>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
-

@@ -1,37 +1,43 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { DatePickerWithRange } from "@/components/ui/date-picker-with-range"
-import { Download, Filter } from 'lucide-react'
-import { addDays } from 'date-fns'
-import type { ProjectWithDetails } from "@/types/dashboard"
+} from "@/components/ui/select";
+import { DatePickerWithRange } from "@/components/ui/date-picker-with-range";
+import { Download } from "lucide-react";
+import { addDays } from "date-fns";
+import type { ProjectWithDetails } from "@/types/dashboard";
 
 const reportTypes = [
-  { id: 'sentiment', name: 'Sentiment Analysis' },
-  { id: 'trends', name: 'Trend Analysis' },
-  { id: 'sources', name: 'Source Performance' },
-  { id: 'keywords', name: 'Keyword Analysis' },
-]
+  { id: "sentiment", name: "Sentiment Analysis" },
+  { id: "trends", name: "Trend Analysis" },
+  { id: "sources", name: "Source Performance" },
+  { id: "keywords", name: "Keyword Analysis" },
+];
 
 interface ProjectReportsProps {
-  project: ProjectWithDetails
+  project: ProjectWithDetails;
 }
 
 export function ProjectReports({ project }: ProjectReportsProps) {
-  const [selectedReport, setSelectedReport] = useState(reportTypes[0].id)
+  const [selectedReport, setSelectedReport] = useState(reportTypes[0].id);
   const [date, setDate] = useState({
     from: new Date(),
     to: addDays(new Date(), 7),
-  })
+  });
 
   return (
     <div className="space-y-6">
@@ -97,9 +103,7 @@ export function ProjectReports({ project }: ProjectReportsProps) {
       <Card>
         <CardHeader>
           <CardTitle>Recent Reports</CardTitle>
-          <CardDescription>
-            Previously generated reports
-          </CardDescription>
+          <CardDescription>Previously generated reports</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -108,20 +112,20 @@ export function ProjectReports({ project }: ProjectReportsProps) {
                 name: "Monthly Sentiment Analysis",
                 type: "Sentiment Analysis",
                 date: "2024-01-01",
-                size: "2.4 MB"
+                size: "2.4 MB",
               },
               {
                 name: "Q4 Trend Report",
                 type: "Trend Analysis",
                 date: "2023-12-15",
-                size: "3.1 MB"
+                size: "3.1 MB",
               },
               {
                 name: "Source Performance Review",
                 type: "Source Performance",
                 date: "2023-12-01",
-                size: "1.8 MB"
-              }
+                size: "1.8 MB",
+              },
             ].map((report, index) => (
               <div
                 key={index}
@@ -147,6 +151,5 @@ export function ProjectReports({ project }: ProjectReportsProps) {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
-

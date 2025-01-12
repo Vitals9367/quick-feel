@@ -1,21 +1,35 @@
-'use client'
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts"
-import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
-import type { ProjectWithDetails } from "@/types/dashboard"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
+import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
+import type { ProjectWithDetails } from "@/types/dashboard";
 
 // Mock data for the sentiment trend
 const sentimentTrend = [
-  { date: '2024-01-01', score: 7.5 },
-  { date: '2024-01-08', score: 8.0 },
-  { date: '2024-01-15', score: 7.8 },
-  { date: '2024-01-22', score: 8.2 },
-  { date: '2024-01-29', score: 8.5 },
-]
+  { date: "2024-01-01", score: 7.5 },
+  { date: "2024-01-08", score: 8.0 },
+  { date: "2024-01-15", score: 7.8 },
+  { date: "2024-01-22", score: 8.2 },
+  { date: "2024-01-29", score: 8.5 },
+];
 
 interface ProjectOverviewProps {
-  project: ProjectWithDetails
+  project: ProjectWithDetails;
 }
 
 export function ProjectOverview({ project }: ProjectOverviewProps) {
@@ -30,16 +44,28 @@ export function ProjectOverview({ project }: ProjectOverviewProps) {
         <CardContent>
           <dl className="space-y-4">
             <div>
-              <dt className="text-sm font-medium text-muted-foreground">Sentiment Score</dt>
-              <dd className="text-2xl font-bold">{project.metrics.sentimentScore.toFixed(1)}/10</dd>
+              <dt className="text-sm font-medium text-muted-foreground">
+                Sentiment Score
+              </dt>
+              <dd className="text-2xl font-bold">
+                {project.metrics.sentimentScore.toFixed(1)}/10
+              </dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-muted-foreground">Total Feedback</dt>
-              <dd className="text-2xl font-bold">{project.metrics.feedbackCount}</dd>
+              <dt className="text-sm font-medium text-muted-foreground">
+                Total Feedback
+              </dt>
+              <dd className="text-2xl font-bold">
+                {project.metrics.feedbackCount}
+              </dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-muted-foreground">Active Sources</dt>
-              <dd className="text-2xl font-bold">{project.dataSources.length}</dd>
+              <dt className="text-sm font-medium text-muted-foreground">
+                Active Sources
+              </dt>
+              <dd className="text-2xl font-bold">
+                {project.dataSources.length}
+              </dd>
             </div>
           </dl>
         </CardContent>
@@ -64,7 +90,10 @@ export function ProjectOverview({ project }: ProjectOverviewProps) {
                     bottom: 5,
                   }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    className="stroke-muted"
+                  />
                   <XAxis
                     dataKey="date"
                     className="text-sm text-muted-foreground"
@@ -94,7 +123,9 @@ export function ProjectOverview({ project }: ProjectOverviewProps) {
       <Card className="col-span-full">
         <CardHeader>
           <CardTitle>Trending Topics</CardTitle>
-          <CardDescription>Most discussed topics in recent feedback</CardDescription>
+          <CardDescription>
+            Most discussed topics in recent feedback
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
@@ -110,6 +141,5 @@ export function ProjectOverview({ project }: ProjectOverviewProps) {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
-

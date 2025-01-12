@@ -1,7 +1,5 @@
-import Logo from '@/components/logo'
-import { siteConfig } from '@/data/site-config'
-import { Loader2 } from 'lucide-react'
-import Image from 'next/image'
+import Logo from "@/components/logo";
+import { Loader2 } from "lucide-react";
 
 export default function Loading() {
   try {
@@ -21,10 +19,9 @@ export default function Loading() {
           </div>
         </div>
       </div>
-    )
+    );
   } catch (error) {
-    console.error('Error in loading state:', error)
-    return null
+    console.error("Error in loading state:", error);
+    return null;
   }
 }
-
