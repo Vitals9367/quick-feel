@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getPostsByCategory, getAllCategories } from '@/lib/blog'
+import { getPostsByCategory, getAllCategories } from '@/lib/posts'
 import { PostCard } from '@/components/blog/post-card'
 
 interface CategoryPageProps {

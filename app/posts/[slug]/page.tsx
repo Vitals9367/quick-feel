@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { Calendar, Clock, Tag } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { getPostBySlug, generateSEOMetadata } from '@/lib/blog'
+import { getPostBySlug, generateSEOMetadata } from '@/lib/posts'
 
 interface BlogPostPageProps {
   params: {

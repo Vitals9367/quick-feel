@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { getAllPosts, getAllCategories } from '@/lib/blog'
+import { getAllPosts, getAllCategories } from '@/lib/posts'
 import { PostCard } from '@/components/blog/post-card'
 import { Badge } from "@/components/ui/badge"
 import Link from 'next/link'
