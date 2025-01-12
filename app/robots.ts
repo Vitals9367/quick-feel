@@ -8,8 +8,9 @@ export default function robots(): MetadataRoute.Robots {
     return {
         rules: {
             userAgent: '*',
-            allow: isDev ? [] : '/',
+            allow: isDev ? [] : '/', // Disallow everything in development
+            disallow: isDev ? '/' : [], // Allow everything in production
         },
-        sitemap: isDev ? '' : `${baseUrl}/sitemap.xml`,
+        sitemap: isDev ? '/sitemap.xml' : `${baseUrl}/sitemap.xml`,
     }
 }

@@ -3,7 +3,7 @@ import { siteConfig } from '@/data/site-config'
 
 const Logo = () => {
   return (
-    <Logo />
+    <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
   )
 }
 
