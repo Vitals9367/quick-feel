@@ -1,23 +1,20 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { ArrowLeft } from 'lucide-react'
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | QuickFeel',
-  description: 'Learn how QuickFeel collects, uses, and protects your personal information.',
-}
+  title: "Privacy Policy | QuickFeel",
+  description:
+    "Learn how QuickFeel collects, uses, and protects your personal information.",
+};
 
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container max-w-3xl px-4 py-12">
         {/* Back Button */}
-        <Button
-          variant="ghost"
-          className="mb-8"
-          asChild
-        >
+        <Button variant="ghost" className="mb-8" asChild>
           <Link href="/">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
@@ -27,13 +24,18 @@ export default function PrivacyPage() {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-4xl font-bold">Privacy Policy</h1>
-            <p className="text-muted-foreground">Last updated: January 11, 2024</p>
+            <p className="text-muted-foreground">
+              Last updated: January 11, 2024
+            </p>
           </div>
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold">1. Introduction</h2>
             <p>
-              At QuickFeel, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our feedback analysis platform and related services.
+              At QuickFeel, we take your privacy seriously. This Privacy Policy
+              explains how we collect, use, disclose, and safeguard your
+              information when you use our feedback analysis platform and
+              related services.
             </p>
           </section>
 
@@ -49,9 +51,12 @@ export default function PrivacyPage() {
               <li>Usage data and preferences</li>
             </ul>
 
-            <h3 className="text-xl font-semibold">2.2 Customer Feedback Data</h3>
+            <h3 className="text-xl font-semibold">
+              2.2 Customer Feedback Data
+            </h3>
             <p>
-              When you use our services to analyze customer feedback, we process:
+              When you use our services to analyze customer feedback, we
+              process:
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Customer reviews and comments</li>
@@ -62,7 +67,9 @@ export default function PrivacyPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold">3. How We Use Your Information</h2>
+            <h2 className="text-2xl font-bold">
+              3. How We Use Your Information
+            </h2>
             <p>We use collected information to:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Provide and maintain our services</li>
@@ -77,7 +84,8 @@ export default function PrivacyPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-bold">4. Data Security</h2>
             <p>
-              We implement appropriate technical and organizational measures to protect your information, including:
+              We implement appropriate technical and organizational measures to
+              protect your information, including:
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Encryption of data in transit and at rest</li>
@@ -102,8 +110,12 @@ export default function PrivacyPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-bold">6. Contact Us</h2>
             <p>
-              If you have questions about this Privacy Policy, please contact us at:{' '}
-              <Link href="mailto:privacy@quickfeel.com" className="text-primary hover:underline">
+              If you have questions about this Privacy Policy, please contact us
+              at:{" "}
+              <Link
+                href="mailto:privacy@quickfeel.com"
+                className="text-primary hover:underline"
+              >
                 privacy@quickfeel.com
               </Link>
             </p>
@@ -111,6 +123,5 @@ export default function PrivacyPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

@@ -1,24 +1,23 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { Button } from "@/components/ui/button"
-import { Mail } from 'lucide-react'
-import { motion } from "framer-motion"
-import { fadeIn } from './animations'
-import { siteConfig } from '@/data/site-config'
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Mail } from "lucide-react";
+import { motion } from "framer-motion";
+import { fadeIn } from "./animations";
+import Logo from "./logo";
 
 export default function Footer() {
   // Function to handle smooth scroll to sections
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
-    <motion.footer 
+    <motion.footer
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
@@ -30,7 +29,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Image src={siteConfig.logo} alt="logo" width={32} height={32}/>
+              <Logo />
               <span className="text-xl font-bold">QuickFeel</span>
             </div>
             <p className="text-gray-600 max-w-sm">
@@ -38,7 +37,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center space-x-2 text-gray-600">
               <Mail className="h-4 w-4" />
-              <a 
+              <a
                 href="mailto:support@quickfeel.com"
                 className="hover:text-[#2A9D8F] transition-colors"
               >
@@ -52,24 +51,24 @@ export default function Footer() {
             {/* Navigation */}
             <nav className="flex flex-wrap gap-4">
               <button
-                onClick={() => scrollToSection('features')}
+                onClick={() => scrollToSection("features")}
                 className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
               >
                 Features
               </button>
               <button
-                onClick={() => scrollToSection('pricing')}
+                onClick={() => scrollToSection("pricing")}
                 className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
               >
                 Pricing
               </button>
-              <Link 
+              <Link
                 href="/privacy"
                 className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
               >
                 Privacy Policy
               </Link>
-              <Link 
+              <Link
                 href="/terms"
                 className="text-gray-600 hover:text-[#2A9D8F] transition-colors"
               >
@@ -79,16 +78,14 @@ export default function Footer() {
 
             {/* CTA */}
             <div className="space-y-4">
-              <p className="text-gray-600">
-                Ready to get started?
-              </p>
+              <p className="text-gray-600">Ready to get started?</p>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-block"
               >
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="border-[#2A9D8F] text-[#2A9D8F] hover:bg-[#2A9D8F] hover:text-white transition-colors"
                 >
                   Sign up now
@@ -105,12 +102,12 @@ export default function Footer() {
               © 2025 QuickFeel. All rights reserved.
             </p>
             <p className="text-sm text-gray-600 text-center md:text-right">
-              Join hundreds of businesses already optimizing their feedback processes.
+              Join hundreds of businesses already optimizing their feedback
+              processes.
             </p>
           </div>
         </div>
       </div>
     </motion.footer>
-  )
+  );
 }
-

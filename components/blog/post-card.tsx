@@ -1,13 +1,18 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { Calendar, Clock, Tag } from 'lucide-react'
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import type { BlogPost } from '@/types/blog'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import type { BlogPost } from "@/types/blog";
+import { Calendar, Clock, Tag } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface PostCardProps {
-  post: BlogPost
+  post: BlogPost;
 }
 
 export function PostCard({ post }: PostCardProps) {
@@ -16,7 +21,7 @@ export function PostCard({ post }: PostCardProps) {
       <Link href={`/blog/${post.slug}`}>
         <div className="aspect-video relative">
           <Image
-            src={post.image || '/placeholder.svg'}
+            src={post.image || "/placeholder.svg"}
             alt={post.title}
             fill
             className="object-cover"
@@ -39,7 +44,9 @@ export function PostCard({ post }: PostCardProps) {
             </Avatar>
             <div>
               <p className="text-sm font-medium">{post.author.name}</p>
-              <p className="text-sm text-muted-foreground">{post.author.role}</p>
+              <p className="text-sm text-muted-foreground">
+                {post.author.role}
+              </p>
             </div>
           </div>
         </CardContent>
@@ -55,12 +62,11 @@ export function PostCard({ post }: PostCardProps) {
             </span>
             <span className="flex items-center">
               <Tag className="mr-1 h-4 w-4" />
-              {post.tags.slice(0, 2).join(', ')}
+              {post.tags.slice(0, 2).join(", ")}
             </span>
           </div>
         </CardFooter>
       </Link>
     </Card>
-  )
+  );
 }
-

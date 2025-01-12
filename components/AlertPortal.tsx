@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { Alert, AlertDescription, AlertTitle } from './ui/alert';
-import { motion } from 'framer-motion';
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { motion } from "framer-motion";
 
 interface AlertPortalProps {
   title: string;
@@ -9,7 +9,11 @@ interface AlertPortalProps {
   onClose: () => void;
 }
 
-const AlertPortal: React.FC<AlertPortalProps> = ({ title, description, onClose }) => {
+const AlertPortal: React.FC<AlertPortalProps> = ({
+  title,
+  description,
+  onClose,
+}) => {
   useEffect(() => {
     const timer = setTimeout(onClose, 6000);
     return () => clearTimeout(timer);
@@ -31,13 +35,15 @@ const AlertPortal: React.FC<AlertPortalProps> = ({ title, description, onClose }
         variants={alertVariants}
         transition={{ duration: 0.3 }}
       >
-        <Alert className='border-[var(--primary)] bg-white'>
-          <AlertTitle className='font-bold text-[var(--primary)]'>{title}</AlertTitle>
+        <Alert className="border-[var(--primary)] bg-white">
+          <AlertTitle className="font-bold text-[var(--primary)]">
+            {title}
+          </AlertTitle>
           <AlertDescription>{description}</AlertDescription>
         </Alert>
       </motion.div>
     </div>,
-    document.body
+    document.body,
   );
 };
 

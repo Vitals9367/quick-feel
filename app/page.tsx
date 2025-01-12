@@ -1,25 +1,25 @@
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from "@/utils/supabase/server";
 import {
   getProducts,
   getSubscription,
-  getUser
-} from '@/utils/supabase/queries';
+  getUser,
+} from "@/utils/supabase/queries";
 
-import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
-import Features from '@/components/Features'
-import HowItWorks from '@/components/HowItWorks'
-import Testimonials from '@/components/Testimonials'
-import Pricing from '@/components/Pricing'
-import CTA from '@/components/CTA'
-import Footer from '@/components/Footer'
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Features from "@/components/Features";
+import HowItWorks from "@/components/HowItWorks";
+import Testimonials from "@/components/Testimonials";
+import Pricing from "@/components/Pricing";
+import CTA from "@/components/CTA";
+import Footer from "@/components/Footer";
 
 export default async function Home() {
   const supabase = createClient();
   const [user, products, subscription] = await Promise.all([
     getUser(supabase),
     getProducts(supabase),
-    getSubscription(supabase)
+    getSubscription(supabase),
   ]);
 
   return (
@@ -37,6 +37,5 @@ export default async function Home() {
       <CTA />
       <Footer />
     </div>
-  )
+  );
 }
-

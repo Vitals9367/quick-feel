@@ -1,18 +1,14 @@
-'use client'
+"use client";
 
-import { signOutAction } from "@/app/(auth)/actions"
-import React from 'react'
+import { signOutAction } from "@/app/(auth)/actions";
+import React from "react";
 
 interface SignOutButtonProps {
-    text?: string
+  text?: string;
 }
 
-const SignOutButton: React.FC<SignOutButtonProps> = ({text = "Sign Out"}) => {
-    return (
-        <button onClick={signOutAction}>
-            {text}
-        </button>
-    )
-}
+const SignOutButton: React.FC<SignOutButtonProps> = ({ text = "Sign Out" }) => {
+  return <button onClick={signOutAction}>{text}</button>;
+};
 
-export default SignOutButton
+export default SignOutButton;

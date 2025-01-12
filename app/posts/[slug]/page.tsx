@@ -1,21 +1,23 @@
-import { Metadata } from 'next'
-import Image from 'next/image'
-import { notFound } from 'next/navigation'
-import { Calendar, Clock, Tag } from 'lucide-react'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { getPostBySlug, generateSEOMetadata } from '@/lib/blog'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { generateSEOMetadata, getPostBySlug } from "@/lib/posts";
+import { Calendar, Clock, Tag } from "lucide-react";
+import { Metadata } from "next";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 
 interface BlogPostPageProps {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
   try {
-    const post = await getPostBySlug(params.slug)
-    
+    const post = await getPostBySlug(params.slug);
+
     return generateSEOMetadata({
       title: `${post.title} | QuickFeel Blog`,
       description: post.description,
@@ -23,22 +25,22 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       publishedTime: post.date,
       authors: [post.author.name],
       tags: post.tags,
-    })
+    });
   } catch {
     return {
-      title: 'Not Found | QuickFeel Blog',
-      description: 'The requested blog post could not be found.',
-    }
+      title: "Not Found | QuickFeel Blog",
+      description: "The requested blog post could not be found.",
+    };
   }
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  let post
-  
+  let post;
+
   try {
-    post = await getPostBySlug(params.slug)
+    post = await getPostBySlug(params.slug);
   } catch {
-    notFound()
+    notFound();
   }
 
   return (
@@ -51,9 +53,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             {post.title}
           </h1>
-          <p className="text-xl text-muted-foreground">
-            {post.description}
-          </p>
+          <p className="text-xl text-muted-foreground">{post.description}</p>
         </div>
 
         <div className="mt-8 flex items-center justify-center space-x-4">
@@ -89,7 +89,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         )}
 
-        <div 
+        <div
           className="prose prose-lg mx-auto mt-12 max-w-none"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
@@ -104,6 +104,5 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </div>
     </article>
-  )
+  );
 }
-

@@ -1,5 +1,5 @@
-import { Metadata } from 'next'
-import { siteConfig } from './site-config'
+import { Metadata } from "next";
+import { siteConfig } from "./site-config";
 
 export const metadata: Metadata = {
   title: {
@@ -53,24 +53,23 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
-}
+};
 
 export const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": siteConfig.name,
-  "description": siteConfig.description,
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "offers": {
+  name: siteConfig.name,
+  description: siteConfig.description,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  offers: {
     "@type": "Offer",
-    "price": "29",
-    "priceCurrency": "USD"
+    price: "29",
+    priceCurrency: "USD",
   },
-  "aggregateRating": {
+  aggregateRating: {
     "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "ratingCount": "127"
-  }
-}
-
+    ratingValue: "4.8",
+    ratingCount: "127",
+  },
+};

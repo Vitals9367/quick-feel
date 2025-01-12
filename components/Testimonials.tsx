@@ -1,38 +1,38 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import { motion } from "framer-motion"
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    quote: "QuickFeel helped us identify trends we missed, saving us hours of manual work!",
+    quote:
+      "QuickFeel helped us identify trends we missed, saving us hours of manual work!",
     author: "Sarah Johnson",
     role: "Product Manager",
     company: "TechCorp",
-    avatar: "/avatars/sarah.jpg"
+    avatar: "/avatars/sarah.jpg",
   },
   {
-    quote: "Our customer satisfaction scores improved after using QuickFeel's insights.",
+    quote:
+      "Our customer satisfaction scores improved after using QuickFeel's insights.",
     author: "Mark Thompson",
     role: "CEO",
     company: "XYZ Co",
-    avatar: "/avatars/mark.jpg"
-  }
-]
+    avatar: "/avatars/mark.jpg",
+  },
+];
 
 const companyLogos = [
   { name: "TechCorp", logo: "/logos/techcorp.svg" },
   { name: "XYZ Co", logo: "/logos/xyz.svg" },
-  { name: "InnovateInc", logo: "/logos/innovate.svg" }
-]
+  { name: "InnovateInc", logo: "/logos/innovate.svg" },
+];
 
 export default function Testimonials() {
   return (
-    <section 
-      id="testimonials"
-      className="w-full py-24 bg-gray-50">
+    <section id="testimonials" className="w-full py-24 bg-gray-50">
       <div className="container px-4 md:px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -42,7 +42,8 @@ export default function Testimonials() {
             Trusted by Industry Leaders
           </h2>
           <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl/relaxed">
-            See how companies are transforming their feedback process with QuickFeel
+            See how companies are transforming their feedback process with
+            QuickFeel
           </p>
         </motion.div>
 
@@ -67,8 +68,12 @@ export default function Testimonials() {
                     className="rounded-full"
                   />
                   <div>
-                    <h3 className="text-lg font-semibold text-[#1D3557]">{testimonial.author}</h3>
-                    <p className="text-sm text-gray-600">{testimonial.role} at {testimonial.company}</p>
+                    <h3 className="text-lg font-semibold text-[#1D3557]">
+                      {testimonial.author}
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      {testimonial.role} at {testimonial.company}
+                    </p>
                   </div>
                 </div>
                 <blockquote className="mt-6 text-lg text-gray-600 italic">
@@ -79,7 +84,7 @@ export default function Testimonials() {
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -100,6 +105,5 @@ export default function Testimonials() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-

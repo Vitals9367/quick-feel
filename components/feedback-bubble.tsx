@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,28 +9,28 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Textarea } from "@/components/ui/textarea"
-import { MessageSquarePlus } from 'lucide-react'
-import { useToast } from "@/components/ui/use-toast"
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import { MessageSquarePlus } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 export function FeedbackBubble() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [feedback, setFeedback] = useState('')
-  const { toast } = useToast()
+  const [isOpen, setIsOpen] = useState(false);
+  const [feedback, setFeedback] = useState("");
+  const { toast } = useToast();
 
   const handleSubmit = async () => {
-    if (!feedback.trim()) return
+    if (!feedback.trim()) return;
 
     // TODO: Implement actual feedback submission
     toast({
       title: "Feedback Submitted",
       description: "Thank you for your feedback! We'll review it shortly.",
-    })
+    });
 
-    setFeedback('')
-    setIsOpen(false)
-  }
+    setFeedback("");
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -48,7 +48,8 @@ export function FeedbackBubble() {
           <DialogHeader>
             <DialogTitle>Send Feedback</DialogTitle>
             <DialogDescription>
-              Help us improve QuickFeel by sharing your thoughts and suggestions.
+              Help us improve QuickFeel by sharing your thoughts and
+              suggestions.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
@@ -68,6 +69,5 @@ export function FeedbackBubble() {
         </DialogContent>
       </Dialog>
     </>
-  )
+  );
 }
-

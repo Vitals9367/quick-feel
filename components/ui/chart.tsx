@@ -1,5 +1,5 @@
 interface ChartContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function ChartContainer({
@@ -11,22 +11,22 @@ export function ChartContainer({
     <div className="h-full w-full" {...props}>
       {children}
     </div>
-  )
+  );
 }
 
 interface ChartTooltipProps {
-  active?: boolean
+  active?: boolean;
   payload?: Array<{
-    value: number
-    name: string
-    color: string
-  }>
-  label?: string
+    value: number;
+    name: string;
+    color: string;
+  }>;
+  label?: string;
 }
 
 export function ChartTooltip({ active, payload, label }: ChartTooltipProps) {
   if (!active || !payload) {
-    return null
+    return null;
   }
 
   return (
@@ -48,6 +48,5 @@ export function ChartTooltip({ active, payload, label }: ChartTooltipProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import posthog from 'posthog-js'
-import { PostHogProvider } from 'posthog-js/react'
+import posthog from "posthog-js";
+import { PostHogProvider } from "posthog-js/react";
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST as string,
-    person_profiles: 'identified_only', 
-  })
+    person_profiles: "identified_only",
+  });
 }
 
 interface CSPostHogProviderProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export function CSPostHogProvider({ children }: CSPostHogProviderProps) {
-    return <PostHogProvider client={posthog}>{children}</PostHogProvider>
+  return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
 }

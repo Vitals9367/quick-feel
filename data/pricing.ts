@@ -11,15 +11,16 @@ export const pricingTiers: PricingTier[] = [
   {
     name: "Basic",
     price: "29",
-    description: "Perfect for small teams getting started with feedback analysis",
+    description:
+      "Perfect for small teams getting started with feedback analysis",
     features: [
       "500 feedback analyses per month",
       "Sentiment & keyword analysis",
       "Simple, easy-to-read reports",
       "1 user access",
-      "Email support"
+      "Email support",
     ],
-    cta: "Start Free Trial"
+    cta: "Start Free Trial",
   },
   {
     name: "Pro",
@@ -32,10 +33,10 @@ export const pricingTiers: PricingTier[] = [
       "Unlimited integrations",
       "3 user access",
       "Priority support",
-      "API access"
+      "API access",
     ],
     cta: "Start Free Trial",
-    popular: true
+    popular: true,
   },
   {
     name: "Enterprise",
@@ -49,32 +50,35 @@ export const pricingTiers: PricingTier[] = [
       "10+ users",
       "24/7 premium support",
       "Custom integrations",
-      "Dedicated account manager"
+      "Dedicated account manager",
     ],
-    cta: "Contact Sales"
-  }
-]
+    cta: "Contact Sales",
+  },
+];
 
 export const pricingFeatures = [
   {
     name: "Feedback Analysis",
-    description: "Automate your feedback analysis at scale"
+    description: "Automate your feedback analysis at scale",
   },
   {
     name: "Sentiment Analysis",
-    description: "Quickly understand customer sentiment with AI-powered analysis"
+    description:
+      "Quickly understand customer sentiment with AI-powered analysis",
   },
   {
     name: "Customizable Reporting",
-    description: "Get clear and actionable reports that can be tailored to your business needs"
+    description:
+      "Get clear and actionable reports that can be tailored to your business needs",
   },
   {
     name: "API Access",
-    description: "Automate feedback workflows by integrating QuickFeel with your existing systems"
+    description:
+      "Automate feedback workflows by integrating QuickFeel with your existing systems",
   },
   {
     name: "User Access",
-    description: "Allow multiple team members to act on insights from feedback analysis"
-  }
-]
-
+    description:
+      "Allow multiple team members to act on insights from feedback analysis",
+  },
+];
