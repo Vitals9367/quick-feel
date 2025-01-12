@@ -45,3 +45,5 @@ function mergeConfig(nextConfig, userConfig) {
     }
   }
 }
+
+export default withSentryConfig(nextConfig);
