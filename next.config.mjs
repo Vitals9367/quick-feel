@@ -23,7 +23,7 @@ const nextConfig = {
     // https://webpack.js.org/configuration/devtool/ and
     // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#use-hidden-source-map
     // for more information.
-    hideSourceMaps: true,
+    hideSourceMaps: false,
   }
 }
 
