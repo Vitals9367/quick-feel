@@ -5,6 +5,7 @@ import './globals.css'
 import { metadata as siteMetadata, jsonLd } from '@/data/metadata'
 import { CSPostHogProvider } from './providers'
 import { CookieBanner } from '@/components/CookieBanner'
+import { ComingSoon } from '@/components/coming-soon'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,6 +16,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // You can set this to true in your Vercel environment variables
+  const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true'
+
+  // If coming soon is enabled, show the coming soon page
+  if (isComingSoon) {
+    return (
+      <html lang="en">
+        <body>
+          <ComingSoon />
+        </body>
+      </html>
+    )
+  }
+
   return (
     <html lang="en">
       <head>
