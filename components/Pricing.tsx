@@ -110,77 +110,85 @@ export default function Pricing({ user, products, subscription }: Props) {
           className="grid grid-cols-1 gap-6 mt-12 md:grid-cols-3 md:gap-8"
         >
           {products
-          .sort((a, b) => (a.prices[0]?.unit_amount ?? 0) - (b.prices[0]?.unit_amount ?? 0))
-          .map((product, index) => {
+            .sort(
+              (a, b) =>
+                (a.prices[0]?.unit_amount ?? 0) -
+                (b.prices[0]?.unit_amount ?? 0),
+            )
+            .map((product, index) => {
+              const price = product.prices?.find(
+                (price) => price?.interval === billingInterval,
+              );
 
-            const price = product.prices?.find(
-              (price) => price?.interval === billingInterval,
-            );
+              if (!price) return null;
 
-            if (!price) return null;
+              const priceString = new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: price.currency!,
+                minimumFractionDigits: 0,
+              }).format((price?.unit_amount || 0) / 100);
 
-            const priceString = new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: price.currency!,
-              minimumFractionDigits: 0,
-            }).format((price?.unit_amount || 0) / 100);
+              const most_popular =
+                (product.metadata as { [key: string]: Json | undefined })
+                  ?.most_popular ?? null;
 
-            const most_popular = (product.metadata as { [key: string]: Json | undefined })?.most_popular ?? null;
-
-            return (
-              <motion.div
-                key={product.name}
-                variants={fadeIn}
-                whileHover={{ y: -5 }}
-                className={cn(
-                  "relative rounded-2xl bg-white p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl",
-                  most_popular && "border-2 border-[#2A9D8F]",
-                )}
-              >
-                {most_popular && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="absolute -top-4 left-1/2 -translate-x-1/2"
-                  >
-                    <div className="bg-[#2A9D8F] text-white px-3 py-1 rounded-full text-sm">
-                      Most popular
-                    </div>
-                  </motion.div>
-                )}
-                <div className="space-y-4">
-                  <h3 className="text-xl font-bold">{product.name}</h3>
-                  <div className="flex items-baseline">
-                    <span className="text-4xl font-bold">{priceString}</span>
-                    <span className="text-gray-500 ml-1">/month</span>
-                  </div>
-                  <p className="text-gray-500">{product.description}</p>
-                </div>
-                <motion.ul
-                  variants={staggerChildren}
-                  className="mt-8 space-y-4"
+              return (
+                <motion.div
+                  key={product.name}
+                  variants={fadeIn}
+                  whileHover={{ y: -5 }}
+                  className={cn(
+                    "relative rounded-2xl bg-white p-8 shadow-lg transition-shadow duration-300 hover:shadow-xl",
+                    most_popular && "border-2 border-[#2A9D8F]",
+                  )}
                 >
-                {Array.isArray(product.features) && product.features
-                  .filter((feature): feature is string => feature !== null)
-                  .map((feature) => (
-                  <motion.li 
-                    key={feature}
-                    variants={slideInFromLeft}
-                    className="flex items-center"
-                  >
-                    <div className="rounded-full bg-[#2A9D8F]/10 p-1 mr-3">
-                      <Check className="h-4 w-4 text-[#2A9D8F]" />
+                  {most_popular && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="absolute -top-4 left-1/2 -translate-x-1/2"
+                    >
+                      <div className="bg-[#2A9D8F] text-white px-3 py-1 rounded-full text-sm">
+                        Most popular
+                      </div>
+                    </motion.div>
+                  )}
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-bold">{product.name}</h3>
+                    <div className="flex items-baseline">
+                      <span className="text-4xl font-bold">{priceString}</span>
+                      <span className="text-gray-500 ml-1">/month</span>
                     </div>
-                    <span className="text-gray-700">{feature}</span>
-                  </motion.li>
-                ))}
-                </motion.ul>
-                <Button className="w-full mt-8 bg-[#2A9D8F] hover:bg-[#238579] text-white transition-transform hover:scale-105 duration-200">
-                  Start for {priceString}/month
-                </Button>
-              </motion.div>
-            );
-          })}
+                    <p className="text-gray-500">{product.description}</p>
+                  </div>
+                  <motion.ul
+                    variants={staggerChildren}
+                    className="mt-8 space-y-4"
+                  >
+                    {Array.isArray(product.features) &&
+                      product.features
+                        .filter(
+                          (feature): feature is string => feature !== null,
+                        )
+                        .map((feature) => (
+                          <motion.li
+                            key={feature}
+                            variants={slideInFromLeft}
+                            className="flex items-center"
+                          >
+                            <div className="rounded-full bg-[#2A9D8F]/10 p-1 mr-3">
+                              <Check className="h-4 w-4 text-[#2A9D8F]" />
+                            </div>
+                            <span className="text-gray-700">{feature}</span>
+                          </motion.li>
+                        ))}
+                  </motion.ul>
+                  <Button className="w-full mt-8 bg-[#2A9D8F] hover:bg-[#238579] text-white transition-transform hover:scale-105 duration-200">
+                    Start for {priceString}/month
+                  </Button>
+                </motion.div>
+              );
+            })}
         </motion.div>
       </div>
     </section>
